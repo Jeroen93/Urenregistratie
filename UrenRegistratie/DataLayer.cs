@@ -49,7 +49,7 @@ namespace UrenRegistratie
         public static bool CheckIn()
         {
             if (IsLoggedIn()) return false;
-            Registratie reg = new Registratie();
+            var reg = new Registratie();
             reg.checkIn = DateTime.Now;
             reg.checkOut = null;
             table.InsertOnSubmit(reg);
@@ -94,9 +94,9 @@ namespace UrenRegistratie
 
         public static List<Registratie> GetRegsForWeek()
         {
-            DateTime now = DateTime.Today;            
-            DateTime begin = now.AddDays(-(double)now.DayOfWeek);
-            DateTime end = begin.AddDays(7);
+            var now = DateTime.Today;            
+            var begin = now.AddDays(-(double)now.DayOfWeek);
+            var end = begin.AddDays(7);
             return table.Where(r => r.checkIn.CompareTo(begin) != -1).ToList();
         }
 

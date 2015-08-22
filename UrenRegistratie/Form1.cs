@@ -53,7 +53,7 @@ namespace UrenRegistratie
 
         private void lblOnline_Click(object sender, EventArgs e)
         {
-            Form2 form = new Form2();
+            var form = new Form2();
             form.Show();
             form.FormClosing += (s, ea) => setButtons();
         }
