@@ -8,13 +8,15 @@ namespace UrenRegistratie
 {
     public static class Data
     {
-        public static DataContext context;
-        private static Table<Registratie> table;
+        public static string ConnectionString;
         public static bool IsConnected = false;
+        private static DataContext context;
+        private static Table<Registratie> table;
 
         public static void Initialise()
         {
-            context = new DataContext(@"Data Source=.\RECORNECT;Initial Catalog=JeroenDB;Integrated Security=True");
+            ConnectionString = @"Data Source=.\RECORNECT;Initial Catalog=JeroenTest;Integrated Security=True";
+            context = new DataContext(ConnectionString);
             try
             {
                 table = context.GetTable<Registratie>();
@@ -31,7 +33,7 @@ namespace UrenRegistratie
         {
             try
             {
-                var openReg = (from r in table where r.checkOut == null select r).First<Registratie>();
+                var openReg = table.Where(r => r.checkOut == null).First();
                 return true;
             }
             catch { return false; }
@@ -41,7 +43,7 @@ namespace UrenRegistratie
         {
             try
             {
-                return (from r in table where r.checkOut == null select r).First<Registratie>();
+                return table.Where(r => r.checkOut == null).First();
             }
             catch { return null; }
         }

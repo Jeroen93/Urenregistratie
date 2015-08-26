@@ -8,13 +8,15 @@ using System.Windows.Forms;
 
 namespace UrenRegistratie
 {
-    public partial class Form1 : Form
+    public partial class formMain : Form
     {
-        public Form1()
+        public formMain()
         {
             InitializeComponent();
             Data.Initialise();
             setButtons();
+            timer1.Tick += (s, e) => setButtons();
+            Text += Data.ConnectionString.Contains("Test") ? " TEST" : "";
         }
 
         private void setButtons()
@@ -22,17 +24,16 @@ namespace UrenRegistratie
             grpKlokken.Enabled = Data.IsConnected;
             grpTotalen.Enabled = Data.IsConnected;
             btnClockIn.Enabled = !Data.IsLoggedIn();
-            btnClockOut.Enabled = !btnClockIn.Enabled;
-            Text += Data.context.Connection.ConnectionString.Contains("Test") ? " TEST" : "";
+            btnClockOut.Enabled = !btnClockIn.Enabled;            
 
             var reg = Data.Last();
             if (reg == null) return;
             lblOnline.Text = reg.checkOut == null ? "Aanwezig sinds " + reg.checkIn.ToShortTimeString() 
                 + "    (" + reg.duration(DateTime.Now) + ")"
                 : "Laatst uitklokt op " + ((DateTime)reg.checkOut).ToShortDateString() + " om " + ((DateTime)reg.checkOut).ToShortTimeString();
-            lblUrenWeek.Text = Registratie.totalDuration(Data.GetRegsForWeek()) + "/" + Contract.Uren;
-            lblUrenTotaal.Text = Registratie.totalDuration(Data.All());
-            lblUrenDiff.Text = Registratie.difference(Data.All());
+            lblUrenWeek.Text = Registratie.TotalDuration(Data.GetRegsForWeek()) + "/" + Contract.Uren;
+            lblUrenTotaal.Text = Registratie.TotalDuration(Data.All());
+            lblUrenDiff.Text = Registratie.Difference(Data.All());
             lblUrenDiff.ForeColor = lblUrenDiff.Text.StartsWith("+") ? Color.Green : Color.Red;
         }
 
@@ -44,16 +45,11 @@ namespace UrenRegistratie
         private void btnClockOut_Click(object sender, EventArgs e)
         {
             if (Data.CheckOut()) setButtons();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            setButtons();
-        }
+        }        
 
         private void lblOnline_Click(object sender, EventArgs e)
         {
-            var form = new Form2();
+            var form = new formEditTime();
             form.Show();
             form.FormClosing += (s, ea) => setButtons();
         }

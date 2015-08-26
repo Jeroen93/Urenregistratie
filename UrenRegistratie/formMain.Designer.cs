@@ -1,6 +1,6 @@
 ﻿namespace UrenRegistratie
 {
-    partial class Form1
+    partial class formMain
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formMain));
             this.grpKlokken = new System.Windows.Forms.GroupBox();
             this.lblOnline = new System.Windows.Forms.Label();
             this.btnClockOut = new System.Windows.Forms.Button();
@@ -93,7 +93,6 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 60000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // grpTotalen
             // 

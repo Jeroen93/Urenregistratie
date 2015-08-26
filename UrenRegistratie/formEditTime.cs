@@ -3,13 +3,13 @@ using System.Windows.Forms;
 
 namespace UrenRegistratie
 {
-    public partial class Form2 : Form
+    public partial class formEditTime : Form
     {
         private Registratie reg;
         private DateTime registration;
         private DateTime other;
 
-        public Form2()
+        public formEditTime()
         {
             InitializeComponent();
             reg = Data.Last();

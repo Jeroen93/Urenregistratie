@@ -1,6 +1,6 @@
 ﻿namespace UrenRegistratie
 {
-    partial class Form2
+    partial class formEditTime
     {
         /// <summary>
         /// Required designer variable.

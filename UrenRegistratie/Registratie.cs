@@ -18,17 +18,17 @@ namespace UrenRegistratie
         public string duration(DateTime end)
         {
             var duration = end - checkIn;
-            return durationToTime(duration);
+            return DurationToTime(duration);
         }
 
-        public static string totalDuration(List<Registratie> regs)
+        public static string TotalDuration(List<Registratie> regs)
         {
             var total = new TimeSpan();
             regs.ForEach(r => total += r.checkOut != null ? (TimeSpan)(r.checkOut - r.checkIn) : DateTime.Now - r.checkIn);
-            return durationToTime(total);
+            return DurationToTime(total);
         }
 
-        public static string difference(List<Registratie> regs)
+        public static string Difference(List<Registratie> regs)
         {
             var total = new TimeSpan();
             regs.ForEach(r => total += r.checkOut != null ? (TimeSpan)(r.checkOut - r.checkIn) : DateTime.Now - r.checkIn);
@@ -38,7 +38,7 @@ namespace UrenRegistratie
             return (difference < 0 ? "-" : "+") + hrs + ":" + (min < 10 ? "0" : "") + min;
         }
 
-        private static string durationToTime(TimeSpan duration)
+        private static string DurationToTime(TimeSpan duration)
         {
             var hrs = Math.Floor(Math.Abs(duration.TotalHours));
             var min = Math.Floor(Math.Abs(duration.TotalMinutes) % 60);
