@@ -66,6 +66,13 @@
   <ItemGroup>
     <Compile Include="Contract.cs" />
     <Compile Include="DataLayer.cs" />
+    <Compile Include="ExportLayer.cs" />
+    <Compile Include="formLoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formLoc.Designer.cs">
+      <DependentUpon>formLoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="formMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +88,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registratie.cs" />
+    <EmbeddedResource Include="formLoc.resx">
+      <DependentUpon>formLoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formMain.resx">
       <DependentUpon>formMain.cs</DependentUpon>
     </EmbeddedResource>

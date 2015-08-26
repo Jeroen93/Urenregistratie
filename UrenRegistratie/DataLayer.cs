@@ -15,7 +15,7 @@ namespace UrenRegistratie
 
         public static void Initialise()
         {
-            ConnectionString = @"Data Source=.\RECORNECT;Initial Catalog=JeroenTest;Integrated Security=True";
+            ConnectionString = @"Data Source=.\RECORNECT;Initial Catalog=JeroenDB;Integrated Security=True";
             context = new DataContext(ConnectionString);
             try
             {
@@ -48,12 +48,13 @@ namespace UrenRegistratie
             catch { return null; }
         }
 
-        public static bool CheckIn()
+        public static bool CheckIn(string location)
         {
             if (IsLoggedIn()) return false;
             var reg = new Registratie();
             reg.checkIn = DateTime.Now;
             reg.checkOut = null;
+            reg.location = location;
             table.InsertOnSubmit(reg);
             context.SubmitChanges();
             return true;
@@ -105,6 +106,11 @@ namespace UrenRegistratie
         public static List<Registratie> All()
         {
             return table.ToList();
+        }
+
+        public static List<Registratie> GetRegsForMonth(DateTime dt)
+        {
+            return table.Where(r => (r.checkIn.Month == dt.Month) && (r.checkIn.Year == dt.Year) && r.checkOut.HasValue).ToList();
         }
     }
 }

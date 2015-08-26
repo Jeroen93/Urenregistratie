@@ -12,6 +12,17 @@ namespace UrenRegistratie
         public formEditTime()
         {
             InitializeComponent();
+
+            //ButtonHandlers
+            btnHourUp.Click += (s, e) => change(60);
+            btnHourDown.Click += (s, e) => change(-60);
+            btnMinUp.Click += (s, e) => change(1);
+            btnMinDown.Click += (s, e) => change(-1);
+            btnCancel.Click += (s, e) => this.Close();
+            btnOk.Click += (s, e) => {
+                if (Data.Update(registration)) this.Close();
+            };
+
             reg = Data.Last();
             registration = Data.IsLoggedIn() ? reg.checkIn : (DateTime)reg.checkOut;
             other = !Data.IsLoggedIn() ? reg.checkIn : (reg.checkOut.HasValue ? (DateTime)reg.checkOut : DateTime.Now);
@@ -31,36 +42,6 @@ namespace UrenRegistratie
             if (registration.AddMinutes(value).CompareTo(other) == (Data.IsLoggedIn() ? 1 : -1)) return;            
             registration = registration.AddMinutes(value);
             setTime(registration);
-        }
-
-        private void btnHourUp_Click(object sender, EventArgs e)
-        {
-            change(60);
-        }
-
-        private void btnHourDown_Click(object sender, EventArgs e)
-        {
-            change(-60);
-        }
-
-        private void btnMinUp_Click(object sender, EventArgs e)
-        {
-            change(1);
-        }
-
-        private void btnMinDown_Click(object sender, EventArgs e)
-        {
-            change(-1);
-        }
-
-        private void btnOk_Click(object sender, EventArgs e)
-        {
-            if (Data.Update(registration)) this.Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

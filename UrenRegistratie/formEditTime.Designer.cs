@@ -78,7 +78,6 @@
             this.btnHourDown.TabIndex = 3;
             this.btnHourDown.Text = "˅";
             this.btnHourDown.UseVisualStyleBackColor = true;
-            this.btnHourDown.Click += new System.EventHandler(this.btnHourDown_Click);
             // 
             // btnMinDown
             // 
@@ -89,7 +88,6 @@
             this.btnMinDown.TabIndex = 4;
             this.btnMinDown.Text = "˅";
             this.btnMinDown.UseVisualStyleBackColor = true;
-            this.btnMinDown.Click += new System.EventHandler(this.btnMinDown_Click);
             // 
             // btnHourUp
             // 
@@ -100,7 +98,6 @@
             this.btnHourUp.TabIndex = 5;
             this.btnHourUp.Text = "˄";
             this.btnHourUp.UseVisualStyleBackColor = true;
-            this.btnHourUp.Click += new System.EventHandler(this.btnHourUp_Click);
             // 
             // btnMinUp
             // 
@@ -111,7 +108,6 @@
             this.btnMinUp.TabIndex = 6;
             this.btnMinUp.Text = "˄";
             this.btnMinUp.UseVisualStyleBackColor = true;
-            this.btnMinUp.Click += new System.EventHandler(this.btnMinUp_Click);
             // 
             // btnOk
             // 
@@ -121,7 +117,6 @@
             this.btnOk.TabIndex = 7;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnCancel
             // 
@@ -132,7 +127,6 @@
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // Form2
             // 

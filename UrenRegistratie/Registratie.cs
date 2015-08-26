@@ -12,8 +12,12 @@ namespace UrenRegistratie
 
         [Column]
         public DateTime checkIn { get; set; }
+
         [Column]
         public DateTime? checkOut { get; set; }
+
+        [Column]
+        public string location { get; set; }
 
         public string duration(DateTime end)
         {
@@ -35,7 +39,7 @@ namespace UrenRegistratie
             var difference = total.TotalHours - (double)(Math.Ceiling((decimal)(DateTime.Today - Contract.Begin).Days / 7) * Contract.Uren);
             var hrs = Math.Floor(Math.Abs(difference));
             var min = Math.Floor(Math.Abs(difference * 60) % 60);
-            return (difference < 0 ? "-" : "+") + hrs + ":" + (min < 10 ? "0" : "") + min;
+            return (difference < 0 ? "-" : "") + hrs + ":" + (min < 10 ? "0" : "") + min;
         }
 
         private static string DurationToTime(TimeSpan duration)
