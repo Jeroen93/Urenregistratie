@@ -43,8 +43,8 @@
             this.lblUrenWeek = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grpOverzicht = new System.Windows.Forms.GroupBox();
-            this.dtOverzicht = new System.Windows.Forms.DateTimePicker();
             this.btnGenerate = new System.Windows.Forms.Button();
+            this.dtOverzicht = new System.Windows.Forms.DateTimePicker();
             this.sfdOverview = new System.Windows.Forms.SaveFileDialog();
             this.grpKlokken.SuspendLayout();
             this.grpTotalen.SuspendLayout();
@@ -67,12 +67,11 @@
             // 
             this.lblOnline.AutoSize = true;
             this.lblOnline.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblOnline.Location = new System.Drawing.Point(23, 85);
+            this.lblOnline.Location = new System.Drawing.Point(20, 77);
             this.lblOnline.Name = "lblOnline";
-            this.lblOnline.Size = new System.Drawing.Size(35, 13);
+            this.lblOnline.Size = new System.Drawing.Size(110, 13);
             this.lblOnline.TabIndex = 2;
-            this.lblOnline.Text = "label1";
-            this.lblOnline.Click += new System.EventHandler(this.lblOnline_Click);
+            this.lblOnline.Text = "Aanwezig sinds 00:00";
             // 
             // btnClockOut
             // 
@@ -82,7 +81,6 @@
             this.btnClockOut.TabIndex = 1;
             this.btnClockOut.Text = "Uitklokken";
             this.btnClockOut.UseVisualStyleBackColor = true;
-            this.btnClockOut.Click += new System.EventHandler(this.btnClockOut_Click);
             // 
             // btnClockIn
             // 
@@ -92,7 +90,6 @@
             this.btnClockIn.TabIndex = 0;
             this.btnClockIn.Text = "Inklokken";
             this.btnClockIn.UseVisualStyleBackColor = true;
-            this.btnClockIn.Click += new System.EventHandler(this.btnClockIn_Click);
             // 
             // timer1
             // 
@@ -180,27 +177,29 @@
             this.grpOverzicht.TabStop = false;
             this.grpOverzicht.Text = "Overzicht uitdraaien";
             // 
+            // btnGenerate
+            // 
+            this.btnGenerate.Location = new System.Drawing.Point(23, 79);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(156, 23);
+            this.btnGenerate.TabIndex = 1;
+            this.btnGenerate.Text = "Genereren";
+            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
             // dtOverzicht
             // 
+            this.dtOverzicht.CustomFormat = "MMMM yyyy";
             this.dtOverzicht.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtOverzicht.Location = new System.Drawing.Point(7, 45);
             this.dtOverzicht.Name = "dtOverzicht";
             this.dtOverzicht.Size = new System.Drawing.Size(200, 20);
             this.dtOverzicht.TabIndex = 0;
             // 
-            // btnGenerate
-            // 
-            this.btnGenerate.Location = new System.Drawing.Point(104, 79);
-            this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(75, 23);
-            this.btnGenerate.TabIndex = 1;
-            this.btnGenerate.Text = "Genereren";
-            this.btnGenerate.UseVisualStyleBackColor = true;
-            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
-            // 
             // sfdOverview
             // 
             this.sfdOverview.DefaultExt = "csv";
+            this.sfdOverview.Filter = "CSV (*.csv)|*.csv|All files (*.*)|*.*";
             // 
             // formMain
             // 

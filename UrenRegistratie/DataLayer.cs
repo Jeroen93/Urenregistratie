@@ -25,15 +25,21 @@ namespace UrenRegistratie
             }
             catch (Exception e)
             {
-                MessageBox.Show("Geen verbinding met database! " + e.Message);
+                MessageBox.Show("Geen verbinding met database: " + e.Message, "Geen verbinding!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        public static void CloseConnection()
+        {
+            context.Connection.Close();
+            context.Dispose();
         }
 
         public static bool IsLoggedIn()
         {
             try
             {
-                var openReg = table.Where(r => r.checkOut == null).First();
+                var openReg = table.Where(r => !r.checkOut.HasValue).First();
                 return true;
             }
             catch { return false; }
@@ -43,7 +49,7 @@ namespace UrenRegistratie
         {
             try
             {
-                return table.Where(r => r.checkOut == null).First();
+                return table.Where(r => !r.checkOut.HasValue).First();
             }
             catch { return null; }
         }
@@ -110,6 +116,7 @@ namespace UrenRegistratie
 
         public static List<Registratie> GetRegsForMonth(DateTime dt)
         {
+            // (month = month -1 && day > 25) or (month = month && day <= 25)
             return table.Where(r => (r.checkIn.Month == dt.Month) && (r.checkIn.Year == dt.Year) && r.checkOut.HasValue).ToList();
         }
     }
