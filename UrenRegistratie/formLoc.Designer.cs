@@ -32,7 +32,16 @@
             this.radioCareServant = new System.Windows.Forms.RadioButton();
             this.radioRecornect = new System.Windows.Forms.RadioButton();
             this.btnOk = new System.Windows.Forms.Button();
-            this.Thuis = new System.Windows.Forms.RadioButton();
+            this.radioThuis = new System.Windows.Forms.RadioButton();
+            this.grpLoc = new System.Windows.Forms.GroupBox();
+            this.grpVervoer = new System.Windows.Forms.GroupBox();
+            this.tbKm = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.radioOV = new System.Windows.Forms.RadioButton();
+            this.radioAuto = new System.Windows.Forms.RadioButton();
+            this.radioFiets = new System.Windows.Forms.RadioButton();
+            this.grpLoc.SuspendLayout();
+            this.grpVervoer.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -49,7 +58,7 @@
             // 
             this.radioCareServant.AutoSize = true;
             this.radioCareServant.Checked = true;
-            this.radioCareServant.Location = new System.Drawing.Point(16, 42);
+            this.radioCareServant.Location = new System.Drawing.Point(6, 24);
             this.radioCareServant.Name = "radioCareServant";
             this.radioCareServant.Size = new System.Drawing.Size(84, 17);
             this.radioCareServant.TabIndex = 1;
@@ -60,7 +69,7 @@
             // radioRecornect
             // 
             this.radioRecornect.AutoSize = true;
-            this.radioRecornect.Location = new System.Drawing.Point(16, 66);
+            this.radioRecornect.Location = new System.Drawing.Point(6, 47);
             this.radioRecornect.Name = "radioRecornect";
             this.radioRecornect.Size = new System.Drawing.Size(75, 17);
             this.radioRecornect.TabIndex = 2;
@@ -69,40 +78,119 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(197, 111);
+            this.btnOk.Location = new System.Drawing.Point(193, 168);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 3;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
             // 
-            // Thuis
+            // radioThuis
             // 
-            this.Thuis.AutoSize = true;
-            this.Thuis.Location = new System.Drawing.Point(16, 90);
-            this.Thuis.Name = "Thuis";
-            this.Thuis.Size = new System.Drawing.Size(51, 17);
-            this.Thuis.TabIndex = 4;
-            this.Thuis.TabStop = true;
-            this.Thuis.Text = "Thuis";
-            this.Thuis.UseVisualStyleBackColor = true;
+            this.radioThuis.AutoSize = true;
+            this.radioThuis.Location = new System.Drawing.Point(6, 70);
+            this.radioThuis.Name = "radioThuis";
+            this.radioThuis.Size = new System.Drawing.Size(51, 17);
+            this.radioThuis.TabIndex = 4;
+            this.radioThuis.TabStop = true;
+            this.radioThuis.Text = "Thuis";
+            this.radioThuis.UseVisualStyleBackColor = true;
+            // 
+            // grpLoc
+            // 
+            this.grpLoc.Controls.Add(this.radioCareServant);
+            this.grpLoc.Controls.Add(this.radioThuis);
+            this.grpLoc.Controls.Add(this.radioRecornect);
+            this.grpLoc.Location = new System.Drawing.Point(16, 43);
+            this.grpLoc.Name = "grpLoc";
+            this.grpLoc.Size = new System.Drawing.Size(123, 119);
+            this.grpLoc.TabIndex = 5;
+            this.grpLoc.TabStop = false;
+            this.grpLoc.Text = "Locatie";
+            // 
+            // grpVervoer
+            // 
+            this.grpVervoer.Controls.Add(this.tbKm);
+            this.grpVervoer.Controls.Add(this.label2);
+            this.grpVervoer.Controls.Add(this.radioOV);
+            this.grpVervoer.Controls.Add(this.radioAuto);
+            this.grpVervoer.Controls.Add(this.radioFiets);
+            this.grpVervoer.Location = new System.Drawing.Point(145, 43);
+            this.grpVervoer.Name = "grpVervoer";
+            this.grpVervoer.Size = new System.Drawing.Size(123, 119);
+            this.grpVervoer.TabIndex = 6;
+            this.grpVervoer.TabStop = false;
+            this.grpVervoer.Text = "Vervoer";
+            // 
+            // tbKm
+            // 
+            this.tbKm.Location = new System.Drawing.Point(68, 87);
+            this.tbKm.MaxLength = 4;
+            this.tbKm.Name = "tbKm";
+            this.tbKm.Size = new System.Drawing.Size(33, 20);
+            this.tbKm.TabIndex = 4;
+            this.tbKm.Text = "0,0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 90);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Aantal KM";
+            // 
+            // radioOV
+            // 
+            this.radioOV.AutoSize = true;
+            this.radioOV.Location = new System.Drawing.Point(6, 70);
+            this.radioOV.Name = "radioOV";
+            this.radioOV.Size = new System.Drawing.Size(43, 17);
+            this.radioOV.TabIndex = 2;
+            this.radioOV.Text = "Bus";
+            this.radioOV.UseVisualStyleBackColor = true;
+            // 
+            // radioAuto
+            // 
+            this.radioAuto.AutoSize = true;
+            this.radioAuto.Location = new System.Drawing.Point(6, 47);
+            this.radioAuto.Name = "radioAuto";
+            this.radioAuto.Size = new System.Drawing.Size(47, 17);
+            this.radioAuto.TabIndex = 1;
+            this.radioAuto.Text = "Auto";
+            this.radioAuto.UseVisualStyleBackColor = true;
+            // 
+            // radioFiets
+            // 
+            this.radioFiets.AutoSize = true;
+            this.radioFiets.Checked = true;
+            this.radioFiets.Location = new System.Drawing.Point(6, 24);
+            this.radioFiets.Name = "radioFiets";
+            this.radioFiets.Size = new System.Drawing.Size(47, 17);
+            this.radioFiets.TabIndex = 0;
+            this.radioFiets.TabStop = true;
+            this.radioFiets.Text = "Fiets";
+            this.radioFiets.UseVisualStyleBackColor = true;
             // 
             // formLoc
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 146);
-            this.Controls.Add(this.Thuis);
+            this.ClientSize = new System.Drawing.Size(280, 198);
+            this.Controls.Add(this.grpVervoer);
+            this.Controls.Add(this.grpLoc);
             this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.radioRecornect);
-            this.Controls.Add(this.radioCareServant);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "formLoc";
             this.Text = "Locatie";
+            this.grpLoc.ResumeLayout(false);
+            this.grpLoc.PerformLayout();
+            this.grpVervoer.ResumeLayout(false);
+            this.grpVervoer.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,6 +202,13 @@
         private System.Windows.Forms.RadioButton radioCareServant;
         private System.Windows.Forms.RadioButton radioRecornect;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.RadioButton Thuis;
+        private System.Windows.Forms.RadioButton radioThuis;
+        private System.Windows.Forms.GroupBox grpLoc;
+        private System.Windows.Forms.GroupBox grpVervoer;
+        private System.Windows.Forms.TextBox tbKm;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton radioOV;
+        private System.Windows.Forms.RadioButton radioAuto;
+        private System.Windows.Forms.RadioButton radioFiets;
     }
 }

@@ -27,17 +27,22 @@ namespace UrenRegistratie
 
         public static string TotalDuration(List<Registratie> regs)
         {
-            var total = new TimeSpan();
-            regs.ForEach(r => total += r.checkOut.HasValue ? (TimeSpan)(r.checkOut - r.checkIn) : DateTime.Now - r.checkIn);
+            var total = TotalTimeSpan(regs);
             return DurationToTime(total.TotalHours);
         }
 
         public static string Difference(List<Registratie> regs)
         {
-            var total = new TimeSpan();
-            regs.ForEach(r => total += r.checkOut.HasValue ? (TimeSpan)(r.checkOut - r.checkIn) : DateTime.Now - r.checkIn);
-            var difference = total.TotalHours - (double)(Math.Ceiling((decimal)(DateTime.Today - Contract.Begin).Days / 7) * Contract.Uren);
+            var total = TotalTimeSpan(regs);
+            var difference = total.TotalHours - (double)(Math.Ceiling((DateTime.Today - Contract.Begin).Days / 7.0) * Contract.Uren);
             return DurationToTime(difference);
+        }
+
+        private static TimeSpan TotalTimeSpan(List<Registratie> regs)
+        {
+            var total = new TimeSpan();
+            regs.ForEach(r => total += (r.checkOut.HasValue ? r.checkOut.Value : DateTime.Now) - r.checkIn);
+            return total;
         }
 
         private static string DurationToTime(double duration)

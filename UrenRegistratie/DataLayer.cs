@@ -15,12 +15,12 @@ namespace UrenRegistratie
 
         public static void Initialise()
         {
-            ConnectionString = @"Data Source=.\RECORNECT;Initial Catalog=JeroenDB;Integrated Security=True";
+            ConnectionString = @"Data Source=.\RECORNECT;Initial Catalog=JeroenTest;Integrated Security=True";
             context = new DataContext(ConnectionString);
             try
             {
                 table = context.GetTable<Registratie>();
-                table.ToList();
+                table.ToList(); //Hacky method to check if the connection is made. Will raise exception if no valid connection available
                 IsConnected = true;
             }
             catch (Exception e)
@@ -54,13 +54,17 @@ namespace UrenRegistratie
             catch { return null; }
         }
 
-        public static bool CheckIn(string location)
+        public static bool CheckIn(string location, string vervoer, double dist)
         {
             if (IsLoggedIn()) return false;
             var reg = new Registratie();
             reg.checkIn = DateTime.Now;
             reg.checkOut = null;
             reg.location = location;
+            if (!location.Equals("Thuis"))
+            {
+                //TODO:set vervoer en dist
+            }
             table.InsertOnSubmit(reg);
             context.SubmitChanges();
             return true;
@@ -116,8 +120,15 @@ namespace UrenRegistratie
 
         public static List<Registratie> GetRegsForMonth(DateTime dt)
         {
-            // (month = month -1 && day > 25) or (month = month && day <= 25)
-            return table.Where(r => (r.checkIn.Month == dt.Month) && (r.checkIn.Year == dt.Year) && r.checkOut.HasValue).ToList();
+            return table.Where(r => ((r.checkIn.Month == dt.Month-1 && r.checkIn.Day > 25) || (r.checkIn.Month == dt.Month && r.checkIn.Day <= 25)) 
+                && (r.checkIn.Year == dt.Year) 
+                && r.checkOut.HasValue)
+                .ToList();
+        }
+
+        public static List<Registratie> GetRegsForDay(DateTime dt)
+        {
+            return table.Where(r => r.checkIn.Date == dt.Date).ToList();
         }
     }
 }

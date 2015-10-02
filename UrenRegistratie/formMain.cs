@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -31,7 +32,7 @@ namespace UrenRegistratie
             var reg = Data.Last();
             if (reg == null) return;
             lblOnline.Text = reg.checkOut == null ? "Aanwezig sinds " + reg.checkIn.ToShortTimeString() 
-                + "    (" + reg.duration(DateTime.Now) + ")"
+                + "    (" + Registratie.TotalDuration(Data.GetRegsForDay(reg.checkIn)) + ")"
                 : "Laatst uitklokt op " + ((DateTime)reg.checkOut).ToShortDateString() + " om " 
                 + ((DateTime)reg.checkOut).ToShortTimeString();
             lblUrenWeek.Text = Registratie.TotalDuration(Data.GetRegsForWeek()) + "/" + Contract.Uren;
@@ -49,8 +50,11 @@ namespace UrenRegistratie
                 try
                 {
                     File.WriteAllText(sfdOverview.FileName, Export.GenerateOverview(dtOverzicht.Value));
-                    MessageBox.Show("Het overzicht is succesvol weggescreven naar " + sfdOverview.FileName,
-                    "Overzicht geëxporteerd", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var result = MessageBox.Show("Het overzicht is succesvol weggescreven naar " + sfdOverview.FileName
+                        + ". Wilt u het bestand openen?",
+                        "Overzicht geëxporteerd", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                        Process.Start(sfdOverview.FileName);
                 }
                 catch (Exception ex)
                 {
