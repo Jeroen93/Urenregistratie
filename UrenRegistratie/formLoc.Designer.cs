@@ -36,7 +36,7 @@
             this.grpLoc = new System.Windows.Forms.GroupBox();
             this.grpVervoer = new System.Windows.Forms.GroupBox();
             this.tbKm = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblKm = new System.Windows.Forms.Label();
             this.radioOV = new System.Windows.Forms.RadioButton();
             this.radioAuto = new System.Windows.Forms.RadioButton();
             this.radioFiets = new System.Windows.Forms.RadioButton();
@@ -111,7 +111,7 @@
             // grpVervoer
             // 
             this.grpVervoer.Controls.Add(this.tbKm);
-            this.grpVervoer.Controls.Add(this.label2);
+            this.grpVervoer.Controls.Add(this.lblKm);
             this.grpVervoer.Controls.Add(this.radioOV);
             this.grpVervoer.Controls.Add(this.radioAuto);
             this.grpVervoer.Controls.Add(this.radioFiets);
@@ -129,16 +129,16 @@
             this.tbKm.Name = "tbKm";
             this.tbKm.Size = new System.Drawing.Size(33, 20);
             this.tbKm.TabIndex = 4;
-            this.tbKm.Text = "0,0";
+            this.tbKm.Text = "4,4";
             // 
-            // label2
+            // lblKm
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 90);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Aantal KM";
+            this.lblKm.AutoSize = true;
+            this.lblKm.Location = new System.Drawing.Point(6, 90);
+            this.lblKm.Name = "lblKm";
+            this.lblKm.Size = new System.Drawing.Size(56, 13);
+            this.lblKm.TabIndex = 3;
+            this.lblKm.Text = "Aantal KM";
             // 
             // radioOV
             // 
@@ -206,7 +206,7 @@
         private System.Windows.Forms.GroupBox grpLoc;
         private System.Windows.Forms.GroupBox grpVervoer;
         private System.Windows.Forms.TextBox tbKm;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblKm;
         private System.Windows.Forms.RadioButton radioOV;
         private System.Windows.Forms.RadioButton radioAuto;
         private System.Windows.Forms.RadioButton radioFiets;

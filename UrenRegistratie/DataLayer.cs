@@ -15,7 +15,11 @@ namespace UrenRegistratie
 
         public static void Initialise()
         {
+#if DEBUG
             ConnectionString = @"Data Source=.\RECORNECT;Initial Catalog=JeroenTest;Integrated Security=True";
+#else
+            ConnectionString = @"Data Source=.\RECORNECT;Initial Catalog=JeroenDB;Integrated Security=True";
+#endif
             context = new DataContext(ConnectionString);
             try
             {
@@ -37,12 +41,7 @@ namespace UrenRegistratie
 
         public static bool IsLoggedIn()
         {
-            try
-            {
-                var openReg = table.Where(r => !r.checkOut.HasValue).First();
-                return true;
-            }
-            catch { return false; }
+            return GetOpenReg() != null;
         }
 
         public static Registratie GetOpenReg()
@@ -54,17 +53,15 @@ namespace UrenRegistratie
             catch { return null; }
         }
 
-        public static bool CheckIn(string location, string vervoer, double dist)
+        public static bool CheckIn(string location, string modeOfTransport, double dist)
         {
             if (IsLoggedIn()) return false;
             var reg = new Registratie();
             reg.checkIn = DateTime.Now;
             reg.checkOut = null;
             reg.location = location;
-            if (!location.Equals("Thuis"))
-            {
-                //TODO:set vervoer en dist
-            }
+            reg.modeOfTransport = modeOfTransport;
+            reg.distance = dist;
             table.InsertOnSubmit(reg);
             context.SubmitChanges();
             return true;
@@ -91,8 +88,7 @@ namespace UrenRegistratie
             {
                 reg.checkOut = registration;
             }
-            context.SubmitChanges();
-            
+            context.SubmitChanges();            
             return true;
         }
 

@@ -19,6 +19,12 @@ namespace UrenRegistratie
         [Column]
         public string location { get; set; }
 
+        [Column]
+        public string modeOfTransport { get; set; }
+
+        [Column]
+        public double distance { get; set; }
+
         public string duration(DateTime end)
         {
             var duration = end - checkIn;

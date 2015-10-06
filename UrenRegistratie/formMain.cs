@@ -58,7 +58,7 @@ namespace UrenRegistratie
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Er ging iets mis..", "Kan het bestand niet wegschrijven: " + ex.Message,
+                    MessageBox.Show("Kan het bestand niet wegschrijven: " + ex.Message, "Er ging iets mis..",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }            
