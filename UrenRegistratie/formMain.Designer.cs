@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formMain));
             this.grpKlokken = new System.Windows.Forms.GroupBox();
             this.lblOnline = new System.Windows.Forms.Label();
@@ -46,9 +49,11 @@
             this.btnGenerate = new System.Windows.Forms.Button();
             this.dtOverzicht = new System.Windows.Forms.DateTimePicker();
             this.sfdOverview = new System.Windows.Forms.SaveFileDialog();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.grpKlokken.SuspendLayout();
             this.grpTotalen.SuspendLayout();
             this.grpOverzicht.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // grpKlokken
@@ -106,7 +111,7 @@
             this.grpTotalen.Controls.Add(this.label1);
             this.grpTotalen.Location = new System.Drawing.Point(240, 13);
             this.grpTotalen.Name = "grpTotalen";
-            this.grpTotalen.Size = new System.Drawing.Size(227, 115);
+            this.grpTotalen.Size = new System.Drawing.Size(221, 115);
             this.grpTotalen.TabIndex = 1;
             this.grpTotalen.TabStop = false;
             this.grpTotalen.Text = "Totalen";
@@ -170,7 +175,7 @@
             // 
             this.grpOverzicht.Controls.Add(this.btnGenerate);
             this.grpOverzicht.Controls.Add(this.dtOverzicht);
-            this.grpOverzicht.Location = new System.Drawing.Point(13, 135);
+            this.grpOverzicht.Location = new System.Drawing.Point(467, 13);
             this.grpOverzicht.Name = "grpOverzicht";
             this.grpOverzicht.Size = new System.Drawing.Size(221, 115);
             this.grpOverzicht.TabIndex = 2;
@@ -201,11 +206,29 @@
             this.sfdOverview.DefaultExt = "csv";
             this.sfdOverview.Filter = "CSV (*.csv)|*.csv|All files (*.*)|*.*";
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(13, 135);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(675, 286);
+            this.chart1.TabIndex = 3;
+            this.chart1.Text = "chart1";
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 393);
+            this.ClientSize = new System.Drawing.Size(700, 433);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.grpOverzicht);
             this.Controls.Add(this.grpTotalen);
             this.Controls.Add(this.grpKlokken);
@@ -219,6 +242,7 @@
             this.grpTotalen.ResumeLayout(false);
             this.grpTotalen.PerformLayout();
             this.grpOverzicht.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -241,6 +265,7 @@
         private System.Windows.Forms.DateTimePicker dtOverzicht;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.SaveFileDialog sfdOverview;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 
