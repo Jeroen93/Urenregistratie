@@ -25,6 +25,17 @@ namespace UrenRegistratie
         [Column]
         public double distance { get; set; }
 
+        public Registratie() { }
+
+        public Registratie(string loc, string mot, double dist) 
+        {
+            checkIn = DateTime.Now;
+            checkOut = null;
+            location = loc;
+            modeOfTransport = mot;
+            distance = dist;
+        }
+
         public string duration(DateTime end)
         {
             var duration = end - checkIn;

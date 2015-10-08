@@ -56,12 +56,7 @@ namespace UrenRegistratie
         public static bool CheckIn(string location, string modeOfTransport, double dist)
         {
             if (IsLoggedIn()) return false;
-            var reg = new Registratie();
-            reg.checkIn = DateTime.Now;
-            reg.checkOut = null;
-            reg.location = location;
-            reg.modeOfTransport = modeOfTransport;
-            reg.distance = dist;
+            var reg = new Registratie(location, modeOfTransport, dist);
             table.InsertOnSubmit(reg);
             context.SubmitChanges();
             return true;
