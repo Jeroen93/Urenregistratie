@@ -15,7 +15,8 @@ namespace UrenRegistratie
             if (!CanGenerate(dt)) return "";
             var regs = Data.GetRegsForMonth(dt);
             var line = "\n";
-            var periodstr = "26 " + dt.AddMonths(-1).ToString("MMMM") + " tot 25 " + dt.ToString("MMMM yyyy");
+            //var periodstr = "26 " + dt.AddMonths(-1).ToString("MMMM") + " tot 25 " + dt.ToString("MMMM yyyy");
+            var periodstr = dt.ToString("MMMM yyyy");
             var sb = new StringBuilder();
 
             sb.Append(line);

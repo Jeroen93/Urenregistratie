@@ -111,10 +111,11 @@ namespace UrenRegistratie
 
         public static List<Registratie> GetRegsForMonth(DateTime dt)
         {
-            return table.Where(r => ((r.checkIn.Month == dt.Month-1 && r.checkIn.Day > 25) || (r.checkIn.Month == dt.Month && r.checkIn.Day <= 25)) 
-                && (r.checkIn.Year == dt.Year) 
-                && r.checkOut.HasValue)
-                .ToList();
+            return table.Where(r => (r.checkIn.Month == dt.Month) && (r.checkIn.Year == dt.Year) && r.checkOut.HasValue).ToList();
+            //return table.Where(r => ((r.checkIn.Month == dt.Month-1 && r.checkIn.Day > 25) || (r.checkIn.Month == dt.Month && r.checkIn.Day <= 25)) 
+            //    && (r.checkIn.Year == dt.Year) 
+            //    && r.checkOut.HasValue)
+            //    .ToList();
         }
 
         public static List<Registratie> GetRegsForDay(DateTime dt)

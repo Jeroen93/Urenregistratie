@@ -125,9 +125,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 77);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 13);
+            this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Verschil";
+            this.label3.Text = "Verschil:";
             // 
             // lblUrenTotaal
             // 
