@@ -32,6 +32,8 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formMain));
             this.grpKlokken = new System.Windows.Forms.GroupBox();
             this.lblOnline = new System.Windows.Forms.Label();
@@ -49,11 +51,11 @@
             this.btnGenerate = new System.Windows.Forms.Button();
             this.dtOverzicht = new System.Windows.Forms.DateTimePicker();
             this.sfdOverview = new System.Windows.Forms.SaveFileDialog();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chrtUren = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.grpKlokken.SuspendLayout();
             this.grpTotalen.SuspendLayout();
             this.grpOverzicht.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtUren)).BeginInit();
             this.SuspendLayout();
             // 
             // grpKlokken
@@ -206,29 +208,39 @@
             this.sfdOverview.DefaultExt = "csv";
             this.sfdOverview.Filter = "CSV (*.csv)|*.csv|All files (*.*)|*.*";
             // 
-            // chart1
+            // chrtUren
             // 
+            chartArea1.AxisX.Interval = 1D;
+            chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Months;
+            chartArea1.AxisX.LabelStyle.Format = "yyyy-MM-dd";
             chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            this.chrtUren.ChartAreas.Add(chartArea1);
             legend1.Enabled = false;
             legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(13, 135);
-            this.chart1.Name = "chart1";
+            this.chrtUren.Legends.Add(legend1);
+            this.chrtUren.Location = new System.Drawing.Point(13, 135);
+            this.chrtUren.Name = "chrtUren";
             series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(675, 286);
-            this.chart1.TabIndex = 3;
-            this.chart1.Text = "chart1";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series2";
+            series2.Points.Add(dataPoint1);
+            this.chrtUren.Series.Add(series1);
+            this.chrtUren.Series.Add(series2);
+            this.chrtUren.Size = new System.Drawing.Size(675, 286);
+            this.chrtUren.TabIndex = 3;
+            this.chrtUren.Text = "chart1";
             // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(700, 433);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.chrtUren);
             this.Controls.Add(this.grpOverzicht);
             this.Controls.Add(this.grpTotalen);
             this.Controls.Add(this.grpKlokken);
@@ -242,7 +254,7 @@
             this.grpTotalen.ResumeLayout(false);
             this.grpTotalen.PerformLayout();
             this.grpOverzicht.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtUren)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -265,7 +277,7 @@
         private System.Windows.Forms.DateTimePicker dtOverzicht;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.SaveFileDialog sfdOverview;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtUren;
     }
 }
 

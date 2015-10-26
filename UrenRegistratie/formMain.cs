@@ -21,6 +21,8 @@ namespace UrenRegistratie
             btnClockOut.Click += (s, e) => { if (Data.CheckOut()) setForm(); };
             lblOnline.Click += (s, e) => OpenForm(new formEditTime());
             dtOverzicht.ValueChanged += (s, e) => btnGenerate.Enabled = Export.CanGenerate(dtOverzicht.Value);
+            chrtUren.Series[0] = Data.getworkSeries();
+            chrtUren.Series[1] = new System.Windows.Forms.DataVisualization.Charting.Series();
         }
 
         private void setForm()

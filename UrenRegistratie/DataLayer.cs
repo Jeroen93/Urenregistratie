@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace UrenRegistratie
 {
@@ -120,6 +121,19 @@ namespace UrenRegistratie
         public static List<Registratie> GetRegsForDay(DateTime dt)
         {
             return table.Where(r => r.checkIn.Date == dt.Date).ToList();
+        }
+
+        public static Series getworkSeries()
+        {
+            var s = new Series();
+            var d = new DateTime(2015, 1, 1);
+            s.ChartType = SeriesChartType.Spline;
+            s.XValueType = ChartValueType.DateTime;
+            s.Points.AddXY(d, 2);
+            s.Points.AddXY(d.AddMonths(1), 1);
+            s.Points.AddXY(d.AddMonths(2), 1);
+            
+            return s;
         }
     }
 }
