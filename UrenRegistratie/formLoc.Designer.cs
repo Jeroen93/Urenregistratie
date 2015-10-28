@@ -65,6 +65,7 @@
             this.radioCareServant.TabStop = true;
             this.radioCareServant.Text = "CareServant";
             this.radioCareServant.UseVisualStyleBackColor = true;
+            this.radioCareServant.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // radioRecornect
             // 
@@ -75,6 +76,7 @@
             this.radioRecornect.TabIndex = 2;
             this.radioRecornect.Text = "Recornect";
             this.radioRecornect.UseVisualStyleBackColor = true;
+            this.radioRecornect.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // btnOk
             // 
@@ -95,6 +97,7 @@
             this.radioThuis.TabStop = true;
             this.radioThuis.Text = "Thuis";
             this.radioThuis.UseVisualStyleBackColor = true;
+            this.radioThuis.CheckedChanged += new System.EventHandler(this.CheckedChanged);
             // 
             // grpLoc
             // 
