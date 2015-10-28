@@ -38,6 +38,8 @@ namespace UrenRegistratie
         {
             context.Connection.Close();
             context.Dispose();
+            table = null;
+            context = null;
         }
 
         public static bool IsLoggedIn()
@@ -84,7 +86,7 @@ namespace UrenRegistratie
             {
                 reg.checkOut = registration;
             }
-            context.SubmitChanges();            
+            context.SubmitChanges();
             return true;
         }
 
@@ -97,12 +99,12 @@ namespace UrenRegistratie
             catch { return null; }
         }
 
-        public static List<Registratie> GetRegsForWeek()
+        public static List<Registratie> GetRegsForWeek(DateTime d)
         {
-            var now = DateTime.Today;            
+            var now = d.Date;
             var begin = now.AddDays(-(double)now.DayOfWeek);
             var end = begin.AddDays(7);
-            return table.Where(r => r.checkIn.CompareTo(begin) != -1).ToList();
+            return table.Where(r => r.checkIn.CompareTo(begin) != -1 && (r.checkOut.HasValue ? r.checkOut.Value : DateTime.Now).CompareTo(end) != 1).ToList();
         }
 
         public static List<Registratie> All()
@@ -123,17 +125,34 @@ namespace UrenRegistratie
             return table.Where(r => r.checkIn.Date == dt.Date).ToList();
         }
 
-        public static Series getworkSeries()
+        public static Series GetSeries(Func<DateTime, double> method)
         {
             var s = new Series();
-            var d = new DateTime(2015, 1, 1);
             s.ChartType = SeriesChartType.Spline;
             s.XValueType = ChartValueType.DateTime;
-            s.Points.AddXY(d, 2);
-            s.Points.AddXY(d.AddMonths(1), 1);
-            s.Points.AddXY(d.AddMonths(2), 1);
+            var d = ToWednesday(new DateTime(DateTime.Today.Year, 1, 1));
             
+            do
+            {                
+                s.Points.AddXY(d, method(d));
+                d = d.AddDays(7);
+            } while (!d.Equals(ToWednesday(DateTime.Today).AddDays(14)));
             return s;
+        }
+                
+        public static double WorkedHours(DateTime d)
+        {
+            return Convert.ToDouble(Registratie.TotalDuration(GetRegsForWeek(d)).Replace(':', ','));
+        }
+
+        public static double HoursByContract(DateTime d)
+        {
+            return (d.CompareTo(Contract.Begin) == 1 && d.CompareTo(Contract.End) == -1) ? Contract.Uren : 0.0;
+        }
+
+        private static DateTime ToWednesday(DateTime d)
+        {
+            return d.AddDays((-(double)d.DayOfWeek) + 3.0);
         }
     }
 }

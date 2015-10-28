@@ -20,9 +20,8 @@ namespace UrenRegistratie
             btnClockIn.Click += (s, e) => OpenForm(new formLoc());
             btnClockOut.Click += (s, e) => { if (Data.CheckOut()) setForm(); };
             lblOnline.Click += (s, e) => OpenForm(new formEditTime());
-            dtOverzicht.ValueChanged += (s, e) => btnGenerate.Enabled = Export.CanGenerate(dtOverzicht.Value);
-            chrtUren.Series[0] = Data.getworkSeries();
-            chrtUren.Series[1] = new System.Windows.Forms.DataVisualization.Charting.Series();
+            dtOverzicht.ValueChanged += (s, e) => btnGenerate.Enabled = Export.CanGenerate(dtOverzicht.Value);            
+            chrtUren.Series[1] = Data.GetSeries(Data.HoursByContract);
         }
 
         private void setForm()
@@ -37,10 +36,11 @@ namespace UrenRegistratie
                 + "    (" + Registratie.TotalDuration(Data.GetRegsForDay(reg.checkIn)) + ")"
                 : "Laatst uitklokt op " + ((DateTime)reg.checkOut).ToShortDateString() + " om " 
                 + ((DateTime)reg.checkOut).ToShortTimeString();
-            lblUrenWeek.Text = Registratie.TotalDuration(Data.GetRegsForWeek()) + "/" + Contract.Uren;
+            lblUrenWeek.Text = Registratie.TotalDuration(Data.GetRegsForWeek(DateTime.Now)) + "/" + Contract.Uren;
             lblUrenTotaal.Text = Registratie.TotalDuration(Data.All());
             lblUrenDiff.Text = Registratie.Difference(Data.All());
             lblUrenDiff.ForeColor = lblUrenDiff.Text.StartsWith("-") ? Color.Red : Color.Green;
+            chrtUren.Series[0] = Data.GetSeries(Data.WorkedHours);
         }
 
         private void btnGenerate_Click(object sender, EventArgs e)

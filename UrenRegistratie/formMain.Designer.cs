@@ -210,9 +210,6 @@
             // 
             // chrtUren
             // 
-            chartArea1.AxisX.Interval = 1D;
-            chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Months;
-            chartArea1.AxisX.LabelStyle.Format = "yyyy-MM-dd";
             chartArea1.Name = "ChartArea1";
             this.chrtUren.ChartAreas.Add(chartArea1);
             legend1.Enabled = false;
