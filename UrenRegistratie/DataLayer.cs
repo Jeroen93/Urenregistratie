@@ -10,9 +10,9 @@ namespace UrenRegistratie
     public static class Data
     {
         public static string ConnectionString;
-        public static bool IsConnected = false;
-        private static DataContext context;
-        private static Table<Registratie> table;
+        public static bool IsConnected;
+        private static DataContext _context;
+        private static Table<Registratie> _table;
 
         public static void Initialise()
         {
@@ -21,25 +21,25 @@ namespace UrenRegistratie
 #else
             ConnectionString = @"Data Source=.\RECORNECT;Initial Catalog=JeroenDB;Integrated Security=True";
 #endif
-            context = new DataContext(ConnectionString);
+            _context = new DataContext(ConnectionString);
             try
             {
-                table = context.GetTable<Registratie>();
-                table.ToList(); //Hacky method to check if the connection is made. Will raise exception if no valid connection available
+                _table = _context.GetTable<Registratie>();
+                _table.ToList(); //Hacky method to check if the connection is made. Will raise exception if no valid connection available
                 IsConnected = true;
             }
             catch (Exception e)
             {
-                MessageBox.Show("Geen verbinding met database: " + e.Message, "Geen verbinding!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(@"Geen verbinding met database: " + e.Message, @"Geen verbinding!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         public static void CloseConnection()
         {
-            context.Connection.Close();
-            context.Dispose();
-            table = null;
-            context = null;
+            _context.Connection.Close();
+            _context.Dispose();
+            _table = null;
+            _context = null;
         }
 
         public static bool IsLoggedIn()
@@ -51,7 +51,7 @@ namespace UrenRegistratie
         {
             try
             {
-                return table.Where(r => !r.checkOut.HasValue).First();
+                return _table.First(r => !r.CheckOut.HasValue);
             }
             catch { return null; }
         }
@@ -60,8 +60,8 @@ namespace UrenRegistratie
         {
             if (IsLoggedIn()) return false;
             var reg = new Registratie(location, modeOfTransport, dist);
-            table.InsertOnSubmit(reg);
-            context.SubmitChanges();
+            _table.InsertOnSubmit(reg);
+            _context.SubmitChanges();
             return true;
         }
 
@@ -69,24 +69,23 @@ namespace UrenRegistratie
         {
             if (!IsLoggedIn()) return false;
             var openReg = GetOpenReg();
-            openReg.checkOut = DateTime.Now;
-            context.SubmitChanges();
+            openReg.CheckOut = DateTime.Now;
+            _context.SubmitChanges();
             return true;
         }
 
         public static bool Update(DateTime registration)
         {
-            if (registration == null) return false;
             var reg = Last();
             if (IsLoggedIn())
             {
-                reg.checkIn = registration;
+                reg.CheckIn = registration;
             }
             else
             {
-                reg.checkOut = registration;
+                reg.CheckOut = registration;
             }
-            context.SubmitChanges();
+            _context.SubmitChanges();
             return true;
         }
 
@@ -94,7 +93,7 @@ namespace UrenRegistratie
         {
             try
             {
-                return table.OrderByDescending(r => r.regId).First();
+                return _table.OrderByDescending(r => r.RegId).First();
             }
             catch { return null; }
         }
@@ -104,17 +103,17 @@ namespace UrenRegistratie
             var now = d.Date;
             var begin = now.AddDays(-(double)now.DayOfWeek);
             var end = begin.AddDays(7);
-            return table.Where(r => r.checkIn.CompareTo(begin) != -1 && (r.checkOut.HasValue ? r.checkOut.Value : DateTime.Now).CompareTo(end) != 1).ToList();
+            return _table.Where(r => r.CheckIn.CompareTo(begin) != -1 && (r.CheckOut ?? DateTime.Now).CompareTo(end) != 1).ToList();
         }
 
         public static List<Registratie> All()
         {
-            return table.ToList();
+            return _table.ToList();
         }
 
         public static List<Registratie> GetRegsForMonth(DateTime dt)
         {
-            return table.Where(r => (r.checkIn.Month == dt.Month) && (r.checkIn.Year == dt.Year) && r.checkOut.HasValue).ToList();
+            return _table.Where(r => (r.CheckIn.Month == dt.Month) && (r.CheckIn.Year == dt.Year) && r.CheckOut.HasValue).ToList();
             //return table.Where(r => ((r.checkIn.Month == dt.Month-1 && r.checkIn.Day > 25) || (r.checkIn.Month == dt.Month && r.checkIn.Day <= 25)) 
             //    && (r.checkIn.Year == dt.Year) 
             //    && r.checkOut.HasValue)
@@ -123,14 +122,16 @@ namespace UrenRegistratie
 
         public static List<Registratie> GetRegsForDay(DateTime dt)
         {
-            return table.Where(r => r.checkIn.Date == dt.Date).ToList();
+            return _table.Where(r => r.CheckIn.Date == dt.Date).ToList();
         }
 
         public static Series GetSeries(Func<DateTime, double> method)
         {
-            var s = new Series();
-            s.ChartType = SeriesChartType.Spline;
-            s.XValueType = ChartValueType.DateTime;
+            var s = new Series
+            {
+                ChartType = SeriesChartType.Spline,
+                XValueType = ChartValueType.DateTime
+            };
             var d = ToWednesday(new DateTime(DateTime.Today.Year, 1, 1));
             
             do

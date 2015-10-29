@@ -14,7 +14,7 @@ namespace UrenRegistratie
         {
             if (!CanGenerate(dt)) return "";
             var regs = Data.GetRegsForMonth(dt);
-            var line = "\n";
+            const string line = "\n";
             //var periodstr = "26 " + dt.AddMonths(-1).ToString("MMMM") + " tot 25 " + dt.ToString("MMMM yyyy");
             var periodstr = dt.ToString("MMMM yyyy");
             var sb = new StringBuilder();
@@ -23,15 +23,15 @@ namespace UrenRegistratie
             sb.Append(";Periode:;;").Append(periodstr + line);
             sb.Append(line);
             sb.Append(";Dag:;;Ingeklokt:;Uitgeklokt:;Duur:;Waar:;;Vervoer:;Km:" + line);
-            foreach (var reg in regs)
+            foreach (var r in regs)
             {
-                sb.Append(";").Append(reg.checkIn.ToString("dddd d-M")).Append(";;");
-                sb.Append(reg.checkIn.ToShortTimeString()).Append(";");
-                sb.Append(reg.checkOut.Value.ToShortTimeString()).Append(";");
-                sb.Append(reg.duration(reg.checkOut.Value)).Append(";");
-                sb.Append(reg.location).Append(";;");
-                sb.Append(reg.modeOfTransport).Append(";");
-                sb.Append(reg.distance + line);
+                sb.Append(";").Append(r.CheckIn.ToString("dddd d-M")).Append(";;");
+                sb.Append(r.CheckIn.ToShortTimeString()).Append(";");
+                sb.Append(r.CheckOut.Value.ToShortTimeString()).Append(";");
+                sb.Append(r.Duration(r.CheckOut.Value)).Append(";");
+                sb.Append(r.Location).Append(";;");
+                sb.Append(r.ModeOfTransport).Append(";");
+                sb.Append(r.Distance + line);
             }
             sb.Append(";;;;Totaal:;").Append(Registratie.TotalDuration(regs) + line);
             sb.Append(line);

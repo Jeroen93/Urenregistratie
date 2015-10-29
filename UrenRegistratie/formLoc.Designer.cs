@@ -1,6 +1,6 @@
 ﻿namespace UrenRegistratie
 {
-    partial class formLoc
+    partial class FormLoc
     {
         /// <summary>
         /// Required designer variable.
@@ -188,7 +188,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "formLoc";
+            this.Name = "FormLoc";
             this.Text = "Locatie";
             this.grpLoc.ResumeLayout(false);
             this.grpLoc.PerformLayout();

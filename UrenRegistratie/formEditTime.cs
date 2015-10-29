@@ -3,33 +3,32 @@ using System.Windows.Forms;
 
 namespace UrenRegistratie
 {
-    public partial class formEditTime : Form
+    public partial class FormEditTime : Form
     {
-        private Registratie reg;
-        private DateTime registration;
-        private DateTime other;
+        private DateTime _registration;
+        private readonly DateTime _other;
 
-        public formEditTime()
+        public FormEditTime()
         {
             InitializeComponent();
 
             //ButtonHandlers
-            btnHourUp.Click += (s, e) => change(60);
-            btnHourDown.Click += (s, e) => change(-60);
-            btnMinUp.Click += (s, e) => change(1);
-            btnMinDown.Click += (s, e) => change(-1);
-            btnCancel.Click += (s, e) => this.Close();
+            btnHourUp.Click += (s, e) => Change(60);
+            btnHourDown.Click += (s, e) => Change(-60);
+            btnMinUp.Click += (s, e) => Change(1);
+            btnMinDown.Click += (s, e) => Change(-1);
+            btnCancel.Click += (s, e) => Close();
             btnOk.Click += (s, e) => {
-                if (Data.Update(registration)) this.Close();
+                if (Data.Update(_registration)) Close();
             };
 
-            reg = Data.Last();
-            registration = Data.IsLoggedIn() ? reg.checkIn : (DateTime)reg.checkOut;
-            other = !Data.IsLoggedIn() ? reg.checkIn : (reg.checkOut.HasValue ? (DateTime)reg.checkOut : DateTime.Now);
-            setTime(registration);
+            var reg = Data.Last();
+            _registration = Data.IsLoggedIn() ? reg.CheckIn : (DateTime)reg.CheckOut;
+            _other = !Data.IsLoggedIn() ? reg.CheckIn : (reg.CheckOut ?? DateTime.Now);
+            SetTime(_registration);
         }
 
-        private void setTime(DateTime time)
+        private void SetTime(DateTime time)
         {
             var hrs = time.Hour;
             var min = time.Minute;
@@ -37,11 +36,11 @@ namespace UrenRegistratie
             lblMin.Text = (min < 10 ? "0" : "") + min;
         }
 
-        private void change(double value)
+        private void Change(double value)
         {
-            if (registration.AddMinutes(value).CompareTo(other) == (Data.IsLoggedIn() ? 1 : -1)) return;            
-            registration = registration.AddMinutes(value);
-            setTime(registration);
+            if (_registration.AddMinutes(value).CompareTo(_other) == (Data.IsLoggedIn() ? 1 : -1)) return;            
+            _registration = _registration.AddMinutes(value);
+            SetTime(_registration);
         }
     }
 }

@@ -8,37 +8,37 @@ namespace UrenRegistratie
     public class Registratie
     {
         [Column(IsPrimaryKey=true, IsDbGenerated=true)]
-        public int regId {get; set; }
+        public int RegId {get; set; }
 
         [Column]
-        public DateTime checkIn { get; set; }
+        public DateTime CheckIn { get; set; }
 
         [Column]
-        public DateTime? checkOut { get; set; }
+        public DateTime? CheckOut { get; set; }
 
         [Column]
-        public string location { get; set; }
+        public string Location { get; set; }
 
         [Column]
-        public string modeOfTransport { get; set; }
+        public string ModeOfTransport { get; set; }
 
         [Column]
-        public double distance { get; set; }
+        public double Distance { get; set; }
 
         public Registratie() { }
 
         public Registratie(string loc, string mot, double dist) 
         {
-            checkIn = DateTime.Now;
-            checkOut = null;
-            location = loc;
-            modeOfTransport = mot;
-            distance = dist;
+            CheckIn = DateTime.Now;
+            CheckOut = null;
+            Location = loc;
+            ModeOfTransport = mot;
+            Distance = dist;
         }
 
-        public string duration(DateTime end)
+        public string Duration(DateTime end)
         {
-            var duration = end - checkIn;
+            var duration = end - CheckIn;
             return DurationToTime(duration.TotalHours);
         }
 
@@ -51,14 +51,14 @@ namespace UrenRegistratie
         public static string Difference(List<Registratie> regs)
         {
             var total = TotalTimeSpan(regs);
-            var difference = total.TotalHours - (double)(Math.Ceiling((DateTime.Today - Contract.Begin).Days / 7.0) * Contract.Uren);
+            var difference = total.TotalHours - Math.Ceiling((DateTime.Today - Contract.Begin).Days / 7.0) * Contract.Uren;
             return DurationToTime(difference);
         }
 
         private static TimeSpan TotalTimeSpan(List<Registratie> regs)
         {
             var total = new TimeSpan();
-            regs.ForEach(r => total += (r.checkOut.HasValue ? r.checkOut.Value : DateTime.Now) - r.checkIn);
+            regs.ForEach(r => total += (r.CheckOut ?? DateTime.Now) - r.CheckIn);
             return total;
         }
 

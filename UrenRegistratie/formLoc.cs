@@ -4,24 +4,24 @@ using System.Windows.Forms;
 
 namespace UrenRegistratie
 {
-    public partial class formLoc : Form
+    public partial class FormLoc : Form
     {
-        public formLoc()
+        public FormLoc()
         {
             InitializeComponent();            
             btnOk.Click += (s, e) => {
-                var location = textOfSelected(grpLoc);
-                var vervoer = radioThuis.Checked ? "" : textOfSelected(grpVervoer);
+                var location = TextOfSelected(grpLoc);
+                var vervoer = radioThuis.Checked ? "" : TextOfSelected(grpVervoer);
                 var dist = Convert.ToDouble(tbKm.Text.Replace('.',','));
-                if (Data.CheckIn(location, vervoer, dist)) this.Close();
+                if (Data.CheckIn(location, vervoer, dist)) Close();
             };
             radioOV.CheckedChanged += (s, e) => { 
                 tbKm.Enabled = lblKm.Enabled = !radioOV.Checked;
-                if (radioOV.Enabled) tbKm.Text = "0,0";
+                if (radioOV.Enabled) tbKm.Text = @"0,0";
             };
         }
 
-        private string textOfSelected(GroupBox box)
+        private static string TextOfSelected(Control box)
         {
             return box.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
         }
