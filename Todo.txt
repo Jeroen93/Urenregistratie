@@ -1,4 +1,0 @@
--Registratie uitbreiden met vervoer en afstand
--Checkin methode afmaken
--uitdraai aanpassen met vervoer en afstand
--juiste periode op uitdraai

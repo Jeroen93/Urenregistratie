@@ -1,6 +1,6 @@
 ﻿namespace UrenRegistratie
 {
-    partial class FormMain
+    sealed partial class FormMain
     {
         /// <summary>
         /// Required designer variable.
@@ -231,8 +231,9 @@
             this.chrtUren.Size = new System.Drawing.Size(675, 286);
             this.chrtUren.TabIndex = 3;
             this.chrtUren.Text = "chart1";
+            this.chrtUren.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseMove);
             // 
-            // formMain
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

@@ -3,10 +3,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace UrenRegistratie
 {
-    public partial class FormMain : Form
+    public sealed partial class FormMain : Form
     {
         public FormMain()
         {
@@ -68,6 +69,33 @@ namespace UrenRegistratie
         {
             form.Show();
             form.FormClosing += (s, ea) => SetForm();
+        }
+
+        Point? _prevPosition;
+        readonly ToolTip _tooltip = new ToolTip();
+
+        void chart1_MouseMove(object sender, MouseEventArgs e)
+        {
+            var pos = e.Location;
+            if (_prevPosition.HasValue && pos == _prevPosition.Value)
+                return;
+            _tooltip.RemoveAll();
+            _prevPosition = pos;
+            var results = chrtUren.HitTest(pos.X, pos.Y, false, ChartElementType.DataPoint);
+            foreach (var result in results)
+            {
+                if (result.ChartElementType != ChartElementType.DataPoint) 
+                    continue;
+                var prop = result.Object as DataPoint;
+                if (prop == null) 
+                    continue;
+                var pointXPixel = result.ChartArea.AxisX.ValueToPixelPosition(prop.XValue);
+                var pointYPixel = result.ChartArea.AxisY.ValueToPixelPosition(prop.YValues[0]);
+
+                if (Math.Abs(pos.X - pointXPixel) < 2 && Math.Abs(pos.Y - pointYPixel) < 2)
+                    _tooltip.Show(DateTime.FromOADate(prop.XValue).ToShortDateString() + "; " + prop.YValues[0] + " uur", chrtUren,
+                        pos.X, pos.Y - 15);
+            }
         }
     }
 }

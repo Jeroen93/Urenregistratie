@@ -47,7 +47,7 @@ namespace UrenRegistratie
             return GetOpenReg() != null;
         }
 
-        public static Registratie GetOpenReg()
+        private static Registratie GetOpenReg()
         {
             try
             {
@@ -130,7 +130,8 @@ namespace UrenRegistratie
             var s = new Series
             {
                 ChartType = SeriesChartType.Spline,
-                XValueType = ChartValueType.DateTime
+                XValueType = ChartValueType.DateTime,
+                MarkerStyle = method == WorkedHours ? MarkerStyle.Square : MarkerStyle.None,
             };
             var d = ToWednesday(new DateTime(DateTime.Today.Year, 1, 1));
             
