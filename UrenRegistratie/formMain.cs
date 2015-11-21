@@ -28,13 +28,14 @@ namespace UrenRegistratie
 
         private void SetForm()
         {
-            grpKlokken.Enabled = grpTotalen.Enabled = grpOverzicht.Enabled = Data.IsConnected;
+            chrtUren.Enabled = grpTotalen.Enabled = grpOverzicht.Enabled = Data.IsConnected && !Data.DbEmpty;
+            grpKlokken.Enabled = Data.IsConnected;
             btnClockIn.Enabled = !Data.IsLoggedIn();
             btnClockOut.Enabled = !btnClockIn.Enabled;
-            SetBtnGenerate();
 
             var reg = Data.Last();
             if (reg == null) return;
+            SetBtnGenerate();
             lblOnline.Text = reg.CheckOut == null ? string.Format("Aanwezig sinds {0}    ({1})", 
                     reg.CheckIn.ToShortTimeString(), 
                     Registratie.TotalDuration(Data.GetRegsForDay(reg.CheckIn)))

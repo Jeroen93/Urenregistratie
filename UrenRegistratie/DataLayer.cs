@@ -11,6 +11,7 @@ namespace UrenRegistratie
     {
         public static string ConnectionString;
         public static bool IsConnected;
+        public static bool DbEmpty;
         private static DataContext _context;
         private static Table<Registratie> _table;
 
@@ -25,7 +26,8 @@ namespace UrenRegistratie
             try
             {
                 _table = _context.GetTable<Registratie>();
-                IsConnected = _table.ToList().Count != 0;
+                IsConnected = true;
+                DbEmpty = _table.ToList().Count == 0;
             }
             catch (Exception e)
             {
