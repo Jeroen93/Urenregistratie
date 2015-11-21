@@ -97,7 +97,7 @@ namespace UrenRegistratie
                 if (result.ChartElementType != ChartElementType.DataPoint) 
                     continue;
                 var prop = result.Object as DataPoint;
-                if (prop == null) 
+                if (prop == null || chrtUren.Series[1].Points.Contains(prop)) 
                     continue;
                 var pointXPixel = result.ChartArea.AxisX.ValueToPixelPosition(prop.XValue);
                 var pointYPixel = result.ChartArea.AxisY.ValueToPixelPosition(prop.YValues[0]);
