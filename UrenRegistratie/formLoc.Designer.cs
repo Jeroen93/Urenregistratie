@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLoc));
             this.label1 = new System.Windows.Forms.Label();
             this.radioCareServant = new System.Windows.Forms.RadioButton();
             this.radioRecornect = new System.Windows.Forms.RadioButton();
@@ -175,7 +176,7 @@
             this.radioFiets.Text = "Fiets";
             this.radioFiets.UseVisualStyleBackColor = true;
             // 
-            // formLoc
+            // FormLoc
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,9 +187,11 @@
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormLoc";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Locatie";
             this.grpLoc.ResumeLayout(false);
             this.grpLoc.PerformLayout();

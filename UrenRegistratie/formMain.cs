@@ -80,10 +80,10 @@ namespace UrenRegistratie
             form.FormClosing += (s, ea) => SetForm();
         }
 
-        Point? _prevPosition;
-        readonly ToolTip _tooltip = new ToolTip();
+        private Point? _prevPosition;
+        private readonly ToolTip _tooltip = new ToolTip();
 
-        void chart1_MouseMove(object sender, MouseEventArgs e)
+        private void chart1_MouseMove(object sender, MouseEventArgs e)
         {
             var pos = e.Location;
             if (_prevPosition.HasValue && pos == _prevPosition.Value)
@@ -102,8 +102,8 @@ namespace UrenRegistratie
                 var pointYPixel = result.ChartArea.AxisY.ValueToPixelPosition(prop.YValues[0]);
 
                 if (Math.Abs(pos.X - pointXPixel) < 2 && Math.Abs(pos.Y - pointYPixel) < 2)
-                    _tooltip.Show(DateTime.FromOADate(prop.XValue).ToShortDateString() + "; " + prop.YValues[0] + " uur", chrtUren,
-                        pos.X, pos.Y - 15);
+                    _tooltip.Show(string.Format("{0}; {1} uur", DateTime.FromOADate(prop.XValue).ToShortDateString(), prop.YValues[0])
+                        , chrtUren, pos.X, pos.Y - 15);
             }
         }
     }

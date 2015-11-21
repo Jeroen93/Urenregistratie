@@ -25,8 +25,7 @@ namespace UrenRegistratie
             try
             {
                 _table = _context.GetTable<Registratie>();
-                _table.ToList(); //Hacky method to check if the connection is made. Will raise exception if no valid connection available
-                IsConnected = true;
+                IsConnected = _table.ToList().Count != 0;
             }
             catch (Exception e)
             {
@@ -150,12 +149,12 @@ namespace UrenRegistratie
 
         public static double HoursByContract(DateTime d)
         {
-            return (d.CompareTo(Contract.Begin) == 1 && d.CompareTo(Contract.End) == -1) ? Contract.Uren : 0.0;
+            return d.CompareTo(Contract.Begin) == 1 && d.CompareTo(Contract.End) == -1 ? Contract.Uren : 0.0;
         }
 
         private static DateTime ToWednesday(DateTime d)
         {
-            return d.AddDays((-(double)d.DayOfWeek) + 3.0);
+            return d.AddDays(-(double)d.DayOfWeek + 3.0);
         }
     }
 }

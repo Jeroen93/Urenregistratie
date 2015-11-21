@@ -29,7 +29,7 @@ namespace UrenRegistratie
         private void CheckedChanged(object sender, EventArgs e)
         {
             grpVervoer.Enabled = !radioThuis.Checked;
-            tbKm.Text = (!radioThuis.Checked && !radioOV.Checked) ? "4,4" : "0,0";
+            tbKm.Text = !radioThuis.Checked && !radioOV.Checked ? "4,4" : "0,0";
         }
     }
 }
