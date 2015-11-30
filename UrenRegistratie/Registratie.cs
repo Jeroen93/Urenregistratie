@@ -4,11 +4,11 @@ using System.Data.Linq.Mapping;
 
 namespace UrenRegistratie
 {
-    [Table(Name="Registraties")]
+    [Table(Name = "Registraties")]
     public class Registratie
     {
-        [Column(IsPrimaryKey=true, IsDbGenerated=true)]
-        public int RegId {get; set; }
+        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
+        public int RegId { get; set; }
 
         [Column]
         public DateTime CheckIn { get; set; }
@@ -27,7 +27,7 @@ namespace UrenRegistratie
 
         public Registratie() { }
 
-        public Registratie(string loc, string mot, double dist) 
+        public Registratie(string loc, string mot, double dist)
         {
             CheckIn = DateTime.Now;
             CheckOut = null;
@@ -65,7 +65,7 @@ namespace UrenRegistratie
         private static string DurationToTime(double duration)
         {
             var hrs = Math.Floor(Math.Abs(duration));
-            var min = Math.Floor(Math.Abs(duration*60) % 60);
+            var min = Math.Floor(Math.Abs(duration * 60) % 60);
             return (duration < 0 ? "-" : "") + hrs + ":" + (min < 10 ? "0" : "") + min;
         }
     }

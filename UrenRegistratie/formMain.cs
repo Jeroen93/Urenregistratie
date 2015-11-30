@@ -24,6 +24,9 @@ namespace UrenRegistratie
             lblOnline.Click += (s, e) => OpenForm(new FormEditTime());
             dtOverzicht.ValueChanged += (s, e) => SetBtnGenerate();            
             chrtUren.Series[1] = Data.GetSeries(Data.HoursByContract);
+            tpChart.Controls.Add(chrtUren);
+            chrtUren.Location = new Point(0, 0);
+            tpUren.Controls.Add(ucWeek);
         }
 
         private void SetForm()
@@ -36,6 +39,7 @@ namespace UrenRegistratie
             var reg = Data.Last();
             if (reg == null) return;
             SetBtnGenerate();
+            ucWeek.Init();
             lblOnline.Text = reg.CheckOut == null ? string.Format("Aanwezig sinds {0}    ({1})", 
                     reg.CheckIn.ToShortTimeString(), 
                     Registratie.TotalDuration(Data.GetRegsForDay(reg.CheckIn)))

@@ -8,14 +8,16 @@ namespace UrenRegistratie
     {
         public FormLoc()
         {
-            InitializeComponent();            
-            btnOk.Click += (s, e) => {
+            InitializeComponent();
+            btnOk.Click += (s, e) =>
+            {
                 var location = TextOfSelected(grpLoc);
                 var vervoer = radioThuis.Checked ? "" : TextOfSelected(grpVervoer);
-                var dist = Convert.ToDouble(tbKm.Text.Replace('.',','));
+                var dist = Convert.ToDouble(tbKm.Text.Replace('.', ','));
                 if (Data.CheckIn(location, vervoer, dist)) Close();
             };
-            radioOV.CheckedChanged += (s, e) => { 
+            radioOV.CheckedChanged += (s, e) =>
+            {
                 tbKm.Enabled = lblKm.Enabled = !radioOV.Checked;
                 if (radioOV.Enabled) tbKm.Text = @"0,0";
             };

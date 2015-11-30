@@ -52,10 +52,16 @@
             this.dtOverzicht = new System.Windows.Forms.DateTimePicker();
             this.sfdOverview = new System.Windows.Forms.SaveFileDialog();
             this.chrtUren = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tpChart = new System.Windows.Forms.TabPage();
+            this.tpUren = new System.Windows.Forms.TabPage();
+            this.ucWeek = new UrenRegistratie.UcWeek();
             this.grpKlokken.SuspendLayout();
             this.grpTotalen.SuspendLayout();
             this.grpOverzicht.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chrtUren)).BeginInit();
+            this.tabControl.SuspendLayout();
+            this.tpChart.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpKlokken
@@ -65,7 +71,7 @@
             this.grpKlokken.Controls.Add(this.btnClockIn);
             this.grpKlokken.Location = new System.Drawing.Point(13, 13);
             this.grpKlokken.Name = "grpKlokken";
-            this.grpKlokken.Size = new System.Drawing.Size(221, 115);
+            this.grpKlokken.Size = new System.Drawing.Size(243, 115);
             this.grpKlokken.TabIndex = 0;
             this.grpKlokken.TabStop = false;
             this.grpKlokken.Text = "In/uitklokken";
@@ -111,7 +117,7 @@
             this.grpTotalen.Controls.Add(this.label2);
             this.grpTotalen.Controls.Add(this.lblUrenWeek);
             this.grpTotalen.Controls.Add(this.label1);
-            this.grpTotalen.Location = new System.Drawing.Point(240, 13);
+            this.grpTotalen.Location = new System.Drawing.Point(262, 13);
             this.grpTotalen.Name = "grpTotalen";
             this.grpTotalen.Size = new System.Drawing.Size(221, 115);
             this.grpTotalen.TabIndex = 1;
@@ -177,7 +183,7 @@
             // 
             this.grpOverzicht.Controls.Add(this.btnGenerate);
             this.grpOverzicht.Controls.Add(this.dtOverzicht);
-            this.grpOverzicht.Location = new System.Drawing.Point(467, 13);
+            this.grpOverzicht.Location = new System.Drawing.Point(489, 13);
             this.grpOverzicht.Name = "grpOverzicht";
             this.grpOverzicht.Size = new System.Drawing.Size(221, 115);
             this.grpOverzicht.TabIndex = 2;
@@ -215,7 +221,7 @@
             legend1.Enabled = false;
             legend1.Name = "Legend1";
             this.chrtUren.Legends.Add(legend1);
-            this.chrtUren.Location = new System.Drawing.Point(13, 135);
+            this.chrtUren.Location = new System.Drawing.Point(23, 163);
             this.chrtUren.Name = "chrtUren";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
@@ -228,17 +234,56 @@
             series2.Points.Add(dataPoint1);
             this.chrtUren.Series.Add(series1);
             this.chrtUren.Series.Add(series2);
-            this.chrtUren.Size = new System.Drawing.Size(675, 286);
+            this.chrtUren.Size = new System.Drawing.Size(756, 286);
             this.chrtUren.TabIndex = 3;
             this.chrtUren.Text = "chart1";
             this.chrtUren.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseMove);
+            // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.tpChart);
+            this.tabControl.Controls.Add(this.tpUren);
+            this.tabControl.Location = new System.Drawing.Point(13, 135);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(776, 324);
+            this.tabControl.TabIndex = 4;
+            // 
+            // tpChart
+            // 
+            this.tpChart.Controls.Add(this.ucWeek);
+            this.tpChart.Location = new System.Drawing.Point(4, 22);
+            this.tpChart.Name = "tpChart";
+            this.tpChart.Padding = new System.Windows.Forms.Padding(3);
+            this.tpChart.Size = new System.Drawing.Size(768, 298);
+            this.tpChart.TabIndex = 0;
+            this.tpChart.Text = "Grafiek";
+            this.tpChart.UseVisualStyleBackColor = true;
+            // 
+            // tpUren
+            // 
+            this.tpUren.Location = new System.Drawing.Point(4, 22);
+            this.tpUren.Name = "tpUren";
+            this.tpUren.Padding = new System.Windows.Forms.Padding(3);
+            this.tpUren.Size = new System.Drawing.Size(768, 298);
+            this.tpUren.TabIndex = 1;
+            this.tpUren.Text = "Uren";
+            this.tpUren.UseVisualStyleBackColor = true;
+            // 
+            // ucWeek
+            // 
+            this.ucWeek.Location = new System.Drawing.Point(7, 6);
+            this.ucWeek.Name = "ucWeek";
+            this.ucWeek.Size = new System.Drawing.Size(756, 286);
+            this.ucWeek.TabIndex = 0;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 433);
+            this.ClientSize = new System.Drawing.Size(801, 471);
             this.Controls.Add(this.chrtUren);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.grpOverzicht);
             this.Controls.Add(this.grpTotalen);
             this.Controls.Add(this.grpKlokken);
@@ -253,6 +298,8 @@
             this.grpTotalen.PerformLayout();
             this.grpOverzicht.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chrtUren)).EndInit();
+            this.tabControl.ResumeLayout(false);
+            this.tpChart.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -276,6 +323,10 @@
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.SaveFileDialog sfdOverview;
         private System.Windows.Forms.DataVisualization.Charting.Chart chrtUren;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tpChart;
+        private System.Windows.Forms.TabPage tpUren;
+        private UcWeek ucWeek;
     }
 }
 

@@ -135,15 +135,15 @@ namespace UrenRegistratie
                 MarkerStyle = method == WorkedHours ? MarkerStyle.Square : MarkerStyle.None,
             };
             var d = ToWednesday(new DateTime(DateTime.Today.Year, 1, 1));
-            
+
             do
-            {                
+            {
                 s.Points.AddXY(d, method(d));
                 d = d.AddDays(7);
             } while (!d.Equals(ToWednesday(DateTime.Today).AddDays(14)));
             return s;
         }
-                
+
         public static double WorkedHours(DateTime d)
         {
             return Convert.ToDouble(Registratie.TotalDuration(GetRegsForWeek(d)).Replace(':', ','));
@@ -157,6 +157,17 @@ namespace UrenRegistratie
         private static DateTime ToWednesday(DateTime d)
         {
             return d.AddDays(-(double)d.DayOfWeek + 3.0);
+        }
+
+        public static List<List<Registratie>> SortByDaysOfWeek(List<Registratie> regs)
+        {
+            var result = new List<List<Registratie>>();
+            for (var i = 0; i < 7; i++)
+            {
+                result.Add(new List<Registratie>());
+            }
+            regs.ForEach(r => result[(int)r.CheckIn.DayOfWeek].Add(r));
+            return result;
         }
     }
 }
