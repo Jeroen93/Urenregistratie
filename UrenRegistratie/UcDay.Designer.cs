@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblIn = new System.Windows.Forms.Label();
-            this.lblOut = new System.Windows.Forms.Label();
-            this.lblTotaal = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
+            this.lblTotaal = new System.Windows.Forms.Label();
+            this.lblOut = new System.Windows.Forms.Label();
+            this.lblIn = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,14 +48,24 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // lblIn
+            // lblDate
             // 
-            this.lblIn.AutoSize = true;
-            this.lblIn.Location = new System.Drawing.Point(4, 20);
-            this.lblIn.Name = "lblIn";
-            this.lblIn.Size = new System.Drawing.Size(43, 13);
-            this.lblIn.TabIndex = 0;
-            this.lblIn.Text = "In: 0:00";
+            this.lblDate.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblDate.Location = new System.Drawing.Point(3, 125);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(91, 15);
+            this.lblDate.TabIndex = 3;
+            this.lblDate.Text = "1";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTotaal
+            // 
+            this.lblTotaal.AutoSize = true;
+            this.lblTotaal.Location = new System.Drawing.Point(4, 54);
+            this.lblTotaal.Name = "lblTotaal";
+            this.lblTotaal.Size = new System.Drawing.Size(40, 13);
+            this.lblTotaal.TabIndex = 2;
+            this.lblTotaal.Text = "Totaal:";
             // 
             // lblOut
             // 
@@ -66,23 +76,14 @@
             this.lblOut.TabIndex = 1;
             this.lblOut.Text = "Uit: 0:00";
             // 
-            // lblTotaal
+            // lblIn
             // 
-            this.lblTotaal.AutoSize = true;
-            this.lblTotaal.Location = new System.Drawing.Point(7, 54);
-            this.lblTotaal.Name = "lblTotaal";
-            this.lblTotaal.Size = new System.Drawing.Size(40, 13);
-            this.lblTotaal.TabIndex = 2;
-            this.lblTotaal.Text = "Totaal:";
-            // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(7, 124);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(35, 13);
-            this.lblDate.TabIndex = 3;
-            this.lblDate.Text = "label1";
+            this.lblIn.AutoSize = true;
+            this.lblIn.Location = new System.Drawing.Point(4, 20);
+            this.lblIn.Name = "lblIn";
+            this.lblIn.Size = new System.Drawing.Size(43, 13);
+            this.lblIn.TabIndex = 0;
+            this.lblIn.Text = "In: 0:00";
             // 
             // UcDay
             // 

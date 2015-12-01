@@ -22,9 +22,10 @@ namespace UrenRegistratie
         {
             _registraties = Data.SortByDaysOfWeek(Data.GetRegsForWeek(_selectedWeek));
             var ucDays = Controls.OfType<UcDay>().ToList();
+            var sunday = _selectedWeek.AddDays(-(int)_selectedWeek.DayOfWeek);
             for (var i = 0; i < 7; i++)
             {
-                ucDays.First(u => u.Name.Contains(i.ToString())).SetRegistrations(_registraties[i]);
+                ucDays.First(u => u.Name.Contains(i.ToString())).SetRegistrations(_registraties[i], sunday.AddDays(i));
             }
         }
 
