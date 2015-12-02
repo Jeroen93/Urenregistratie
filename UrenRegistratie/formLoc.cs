@@ -25,7 +25,7 @@ namespace UrenRegistratie
 
         private static string TextOfSelected(Control box)
         {
-            return box.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Text;
+            return box.Controls.OfType<RadioButton>().First(r => r.Checked).Text;
         }
 
         private void CheckedChanged(object sender, EventArgs e)

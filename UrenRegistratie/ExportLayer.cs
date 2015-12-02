@@ -36,7 +36,7 @@ namespace UrenRegistratie
             }
             sb.Append(";;;;Totaal:;").Append(Registratie.TotalDuration(regs) + line);
             sb.Append(line);
-            sb.Append(";Overuren:;;").Append(Registratie.Difference(Data.All()) + line);
+            sb.Append(";Overuren:;;").Append(Registratie.Difference(Data.All()).Replace(":", ",") + line);
             sb.Append(";Totaal gewerkt:;;").Append(Registratie.TotalDuration(Data.All()) + line);
 
             return sb.ToString();
