@@ -4,9 +4,11 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using UrenRegistratie.Layer;
+using UrenRegistratie.Models;
 // ReSharper disable LocalizableElement
 
-namespace UrenRegistratie
+namespace UrenRegistratie.Forms
 {
     public sealed partial class FormMain : Form
     {

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using UrenRegistratie.Models;
 
-namespace UrenRegistratie
+namespace UrenRegistratie.Controls
 {
     public partial class UcDay : UserControl
     {

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using UrenRegistratie.Layer;
+using UrenRegistratie.Models;
 
-namespace UrenRegistratie
+namespace UrenRegistratie.Controls
 {
     public partial class UcWeek : UserControl
     {

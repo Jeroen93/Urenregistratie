@@ -1,4 +1,4 @@
-﻿namespace UrenRegistratie
+﻿namespace UrenRegistratie.Controls
 {
     partial class UcDay
     {

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using UrenRegistratie.Layer;
 
-namespace UrenRegistratie
+namespace UrenRegistratie.Forms
 {
     public partial class FormEditTime : Form
     {

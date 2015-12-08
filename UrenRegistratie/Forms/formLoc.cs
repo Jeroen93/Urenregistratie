@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using UrenRegistratie.Layer;
 
-namespace UrenRegistratie
+namespace UrenRegistratie.Forms
 {
     public partial class FormLoc : Form
     {

@@ -47,7 +47,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Alecive-Flatwoken-Apps-Clock.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\Alecive-Flatwoken-Apps-Clock.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -60,50 +60,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contract.cs" />
-    <Compile Include="DataLayer.cs" />
-    <Compile Include="ExportLayer.cs" />
-    <Compile Include="formLoc.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formLoc.Designer.cs">
-      <DependentUpon>formLoc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="formMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formMain.Designer.cs">
-      <DependentUpon>formMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="formEditTime.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formEditTime.Designer.cs">
-      <DependentUpon>formEditTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registratie.cs" />
-    <Compile Include="UcDay.cs">
+    <Compile Include="Controls\UcDay.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UcDay.Designer.cs">
+    <Compile Include="Controls\UcDay.Designer.cs">
       <DependentUpon>UcDay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UcWeek.cs">
+    <Compile Include="Controls\UcWeek.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UcWeek.Designer.cs">
+    <Compile Include="Controls\UcWeek.Designer.cs">
       <DependentUpon>UcWeek.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="formLoc.resx">
+    <Compile Include="Forms\formEditTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\formEditTime.Designer.cs">
+      <DependentUpon>formEditTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formLoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\formLoc.Designer.cs">
+      <DependentUpon>formLoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\formMain.Designer.cs">
+      <DependentUpon>formMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layers\DataLayer.cs" />
+    <Compile Include="Layers\ExportLayer.cs" />
+    <Compile Include="Models\Contract.cs" />
+    <Compile Include="Models\Registratie.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\UcDay.resx">
+      <DependentUpon>UcDay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UcWeek.resx">
+      <DependentUpon>UcWeek.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formEditTime.resx">
+      <DependentUpon>formEditTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formLoc.resx">
       <DependentUpon>formLoc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formMain.resx">
+    <EmbeddedResource Include="Forms\formMain.resx">
       <DependentUpon>formMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formEditTime.resx">
-      <DependentUpon>formEditTime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -114,12 +120,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UcDay.resx">
-      <DependentUpon>UcDay.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UcWeek.resx">
-      <DependentUpon>UcWeek.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -159,8 +159,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Alecive-Flatwoken-Apps-Clock.ico" />
+    <Content Include="Assets\Alecive-Flatwoken-Apps-Clock.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

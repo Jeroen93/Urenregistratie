@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Text;
+using UrenRegistratie.Models;
+
 // ReSharper disable PossibleInvalidOperationException
 
-namespace UrenRegistratie
+namespace UrenRegistratie.Layer
 {
     public static class Export
     {

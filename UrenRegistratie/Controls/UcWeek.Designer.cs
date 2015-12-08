@@ -1,4 +1,4 @@
-﻿namespace UrenRegistratie
+﻿namespace UrenRegistratie.Controls
 {
     partial class UcWeek
     {
@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.btnPrevWeek = new System.Windows.Forms.Button();
-            this.ucDay6 = new UrenRegistratie.UcDay();
-            this.ucDay5 = new UrenRegistratie.UcDay();
-            this.ucDay4 = new UrenRegistratie.UcDay();
-            this.ucDay3 = new UrenRegistratie.UcDay();
-            this.ucDay2 = new UrenRegistratie.UcDay();
-            this.ucDay1 = new UrenRegistratie.UcDay();
-            this.ucDay0 = new UrenRegistratie.UcDay();
+            this.ucDay6 = new UcDay();
+            this.ucDay5 = new UcDay();
+            this.ucDay4 = new UcDay();
+            this.ucDay3 = new UcDay();
+            this.ucDay2 = new UcDay();
+            this.ucDay1 = new UcDay();
+            this.ucDay0 = new UcDay();
             this.btnNextWeek = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 

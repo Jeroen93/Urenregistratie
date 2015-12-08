@@ -1,4 +1,6 @@
-﻿namespace UrenRegistratie
+﻿using UrenRegistratie.Controls;
+
+namespace UrenRegistratie.Forms
 {
     sealed partial class FormMain
     {
@@ -55,7 +57,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpChart = new System.Windows.Forms.TabPage();
             this.tpUren = new System.Windows.Forms.TabPage();
-            this.ucWeek = new UrenRegistratie.UcWeek();
+            this.ucWeek = new UcWeek();
             this.grpKlokken.SuspendLayout();
             this.grpTotalen.SuspendLayout();
             this.grpOverzicht.SuspendLayout();

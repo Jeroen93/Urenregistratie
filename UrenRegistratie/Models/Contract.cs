@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UrenRegistratie
+namespace UrenRegistratie.Models
 {
     public static class Contract
     {

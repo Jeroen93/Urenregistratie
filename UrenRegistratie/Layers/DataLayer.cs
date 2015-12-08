@@ -4,8 +4,9 @@ using System.Data.Linq;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using UrenRegistratie.Models;
 
-namespace UrenRegistratie
+namespace UrenRegistratie.Layer
 {
     public static class Data
     {

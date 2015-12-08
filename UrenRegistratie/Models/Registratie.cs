@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq.Mapping;
 
-namespace UrenRegistratie
+namespace UrenRegistratie.Models
 {
     [Table(Name = "Registraties")]
     public class Registratie

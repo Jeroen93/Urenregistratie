@@ -1,4 +1,4 @@
-﻿namespace UrenRegistratie
+﻿namespace UrenRegistratie.Forms
 {
     partial class FormEditTime
     {
