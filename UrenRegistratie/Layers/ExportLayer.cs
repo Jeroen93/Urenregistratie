@@ -4,7 +4,7 @@ using UrenRegistratie.Models;
 
 // ReSharper disable PossibleInvalidOperationException
 
-namespace UrenRegistratie.Layer
+namespace UrenRegistratie.Layers
 {
     public static class Export
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using UrenRegistratie.Layer;
+using UrenRegistratie.Layers;
 
 namespace UrenRegistratie.Forms
 {

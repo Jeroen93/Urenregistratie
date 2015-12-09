@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using UrenRegistratie.Layer;
+using UrenRegistratie.Layers;
 
 namespace UrenRegistratie.Forms
 {

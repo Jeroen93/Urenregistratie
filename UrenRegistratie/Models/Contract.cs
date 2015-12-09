@@ -4,8 +4,8 @@ namespace UrenRegistratie.Models
 {
     public static class Contract
     {
-        public static DateTime Begin { get { return new DateTime(2015, 8, 2); } }
-        public static DateTime End { get { return new DateTime(2016, 2, 2); } }
-        public static int Uren { get { return 16;} }
+        public static DateTime Begin => new DateTime(2015, 8, 2);
+        public static DateTime End => new DateTime(2016, 2, 2);
+        public static int Uren => 16;
     }
 }

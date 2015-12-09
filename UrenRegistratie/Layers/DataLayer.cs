@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using UrenRegistratie.Models;
 
-namespace UrenRegistratie.Layer
+namespace UrenRegistratie.Layers
 {
     public static class Data
     {
@@ -32,7 +32,7 @@ namespace UrenRegistratie.Layer
             }
             catch (Exception e)
             {
-                MessageBox.Show(string.Format(@"Geen verbinding met database: {0}", e.Message), @"Geen verbinding!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Geen verbinding met database: {e.Message}", @"Geen verbinding!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

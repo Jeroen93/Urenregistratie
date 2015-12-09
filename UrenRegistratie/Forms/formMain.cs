@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using UrenRegistratie.Layer;
+using UrenRegistratie.Layers;
 using UrenRegistratie.Models;
 // ReSharper disable LocalizableElement
 
@@ -42,12 +42,9 @@ namespace UrenRegistratie.Forms
             if (reg == null) return;
             SetBtnGenerate();
             ucWeek.Init();
-            lblOnline.Text = reg.CheckOut == null ? string.Format("Aanwezig sinds {0}    ({1})", 
-                    reg.CheckIn.ToShortTimeString(), 
-                    Registratie.TotalDuration(Data.GetRegsForDay(reg.CheckIn)))
-                : string.Format("Laatst uitgeklokt op {0} om {1}", 
-                    ((DateTime)reg.CheckOut).ToShortDateString(), 
-                    ((DateTime)reg.CheckOut).ToShortTimeString());
+            lblOnline.Text = reg.CheckOut == null ?
+                $"Aanwezig sinds {reg.CheckIn.ToShortTimeString()}    ({Registratie.TotalDuration(Data.GetRegsForDay(reg.CheckIn))})"
+                : $"Laatst uitgeklokt op {((DateTime) reg.CheckOut).ToShortDateString()} om {((DateTime) reg.CheckOut).ToShortTimeString()}";
             lblUrenWeek.Text = Registratie.TotalDuration(Data.GetRegsForWeek(DateTime.Now)) + "/" + Contract.Uren;
             lblUrenTotaal.Text = Registratie.TotalDuration(Data.All());
             lblUrenDiff.Text = Registratie.Difference(Data.All());
@@ -62,21 +59,21 @@ namespace UrenRegistratie.Forms
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            sfdOverview.FileName = string.Format("Overzicht Jeroen Aarts {0}", dtOverzicht.Value.ToString("MMMM yyyy"));
+            sfdOverview.FileName = $"Overzicht Jeroen Aarts {dtOverzicht.Value.ToString("MMMM yyyy")}";
             sfdOverview.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (sfdOverview.ShowDialog() != DialogResult.OK) return;
             try
             {
                 File.WriteAllText(sfdOverview.FileName, Export.GenerateOverview(dtOverzicht.Value));
-                var result = MessageBox.Show(string.Format("Het overzicht is succesvol weggescreven naar {0}. Wilt u het bestand openen?"
-                    , sfdOverview.FileName),
+                var result = MessageBox.Show(
+                    $"Het overzicht is succesvol weggescreven naar {sfdOverview.FileName}. Wilt u het bestand openen?",
                     "Overzicht geëxporteerd", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                     Process.Start(sfdOverview.FileName);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format("Kan het bestand niet wegschrijven: {0}",ex.Message), "Er ging iets mis..",
+                MessageBox.Show($"Kan het bestand niet wegschrijven: {ex.Message}", "Er ging iets mis..",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -109,7 +106,7 @@ namespace UrenRegistratie.Forms
                 var pointYPixel = result.ChartArea.AxisY.ValueToPixelPosition(prop.YValues[0]);
 
                 if (Math.Abs(pos.X - pointXPixel) < 2 && Math.Abs(pos.Y - pointYPixel) < 2)
-                    _tooltip.Show(string.Format("{0}; {1} uur", DateTime.FromOADate(prop.XValue).ToShortDateString(), prop.YValues[0])
+                    _tooltip.Show($"{DateTime.FromOADate(prop.XValue).ToShortDateString()}; {prop.YValues[0]} uur"
                         , chrtUren, pos.X, pos.Y - 15);
             }
         }

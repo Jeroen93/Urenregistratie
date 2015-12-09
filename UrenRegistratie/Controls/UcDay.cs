@@ -25,9 +25,9 @@ namespace UrenRegistratie.Controls
             }
             else
             {
-                lblIn.Text = string.Format("In: {0}", regs[0].CheckIn.ToShortTimeString());
-                lblOut.Text = string.Format("Uit: {0}", (regs.Last().CheckOut ?? DateTime.Now).ToShortTimeString());
-                lblTotaal.Text = string.Format("Totaal: {0}", Registratie.TotalDuration(regs));
+                lblIn.Text = $"In: {regs[0].CheckIn.ToShortTimeString()}";
+                lblOut.Text = $"Uit: {(regs.Last().CheckOut ?? DateTime.Now).ToShortTimeString()}";
+                lblTotaal.Text = $"Totaal: {Registratie.TotalDuration(regs)}";
             }
         }
     }
