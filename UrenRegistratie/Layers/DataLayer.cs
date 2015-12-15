@@ -18,17 +18,16 @@ namespace UrenRegistratie.Layers
 
         public static void Initialise()
         {
-#if DEBUG
-            ConnectionString = @"Data Source=.\RECORNECT;Initial Catalog=JeroenTest;Integrated Security=True";
-#else
             ConnectionString = @"Data Source=.\RECORNECT;Initial Catalog=JeroenDB;Integrated Security=True";
+#if DEBUG
+            ConnectionString = ConnectionString.Replace("JeroenDB", "JeroenTest");
 #endif
             _context = new DataContext(ConnectionString);
             try
             {
                 _table = _context.GetTable<Registratie>();
-                IsConnected = true;
                 DbEmpty = _table.ToList().Count == 0;
+                IsConnected = true;
             }
             catch (Exception e)
             {
