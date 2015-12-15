@@ -38,7 +38,13 @@ namespace UrenRegistratie.Layers
             }
             sb.Append(";;;;Totaal:;").Append(Registratie.TotalDuration(regs) + line);
             sb.Append(line);
-            sb.Append(";Overuren:;;").Append(Registratie.Difference(Data.All()).Replace(":", ",") + line);
+            var diff = Registratie.Difference(Data.All());
+            if (dt.Month != DateTime.Today.Month)
+            {
+                var end = dt.AddDays(-(dt.Day - 1)).AddMonths(1);
+                diff = Registratie.Difference(Data.GetRegsForPeriod(Contract.Begin, end), end);
+            }
+            sb.Append(";Overuren:;;").Append(diff.Replace(":", ",") + line);
             sb.Append(";Totaal gewerkt:;;").Append(Registratie.TotalDuration(Data.All()) + line);
 
             return sb.ToString();

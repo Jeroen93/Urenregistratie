@@ -24,7 +24,7 @@ namespace UrenRegistratie.Forms
             };
 
             var reg = Data.Last();
-            _registration = Data.IsLoggedIn() ? reg.CheckIn : (DateTime)reg.CheckOut;
+            _registration = reg.CheckOut ?? reg.CheckIn;//Data.IsLoggedIn() ? reg.CheckIn : reg.CheckOut.Value;
             _other = !Data.IsLoggedIn() ? reg.CheckIn : (reg.CheckOut ?? DateTime.Now);
             SetTime(_registration);
         }

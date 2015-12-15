@@ -50,8 +50,13 @@ namespace UrenRegistratie.Models
 
         public static string Difference(List<Registratie> regs)
         {
+            return Difference(regs, DateTime.Today);
+        }
+
+        public static string Difference(List<Registratie> regs, DateTime end)
+        {
             var total = TotalTimeSpan(regs);
-            var difference = total.TotalHours - Math.Ceiling((DateTime.Today - Contract.Begin).Days / 7.0) * Contract.Uren;
+            var difference = total.TotalHours - Math.Ceiling((end - Contract.Begin).Days / 7.0) * Contract.Uren;
             return DurationToTime(difference);
         }
 

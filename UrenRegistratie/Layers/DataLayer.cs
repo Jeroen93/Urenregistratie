@@ -102,11 +102,15 @@ namespace UrenRegistratie.Layers
 
         public static List<Registratie> GetRegsForWeek(DateTime d)
         {
-            var now = d.Date;
-            var begin = now.AddDays(-(double)now.DayOfWeek);
+            var begin = d.Date.AddDays(-(double)d.Date.DayOfWeek);
             var end = begin.AddDays(7);
-            return _table.Where(r => r.CheckIn.CompareTo(begin) != -1 && (r.CheckOut ?? DateTime.Now).CompareTo(end) != 1).ToList();
+            return GetRegsForPeriod(begin, end);
         }
+
+        public static List<Registratie> GetRegsForPeriod(DateTime begin, DateTime end)
+        {
+            return _table.Where(r => r.CheckIn.CompareTo(begin) != -1 && (r.CheckOut ?? DateTime.Now).CompareTo(end) != 1).ToList();
+        } 
 
         public static List<Registratie> All()
         {

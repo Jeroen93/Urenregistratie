@@ -17,7 +17,7 @@ namespace UrenRegistratie.Forms
             InitializeComponent();
             Data.Initialise();
             SetForm();
-            if (Data.ConnectionString.Contains("Test")) Text += " TEST";
+            if (IsTesting()) Text += " TEST";
 
             timer1.Tick += (s, e) => SetForm();
             FormClosing += (s, e) => Data.CloseConnection();
@@ -57,14 +57,20 @@ namespace UrenRegistratie.Forms
             btnGenerate.Enabled = Export.CanGenerate(dtOverzicht.Value);
         }
 
+        private static bool IsTesting()
+        {
+            return Data.ConnectionString.Contains("Test");
+        }
+
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             sfdOverview.FileName = $"Overzicht Jeroen Aarts {dtOverzicht.Value.ToString("MMMM yyyy")}";
+            if (IsTesting()) sfdOverview.FileName += " TEST";
             sfdOverview.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (sfdOverview.ShowDialog() != DialogResult.OK) return;
             try
             {
-                File.WriteAllText(sfdOverview.FileName, Export.GenerateOverview(dtOverzicht.Value));
+                File.WriteAllText(sfdOverview.FileName, Export.GenerateOverview(dtOverzicht.Value.Date));
                 var result = MessageBox.Show(
                     $"Het overzicht is succesvol weggescreven naar {sfdOverview.FileName}. Wilt u het bestand openen?",
                     "Overzicht geëxporteerd", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
