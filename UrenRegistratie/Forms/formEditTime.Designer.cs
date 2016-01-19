@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblHour = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMin = new System.Windows.Forms.Label();
@@ -37,6 +38,7 @@
             this.btnMinUp = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.tmrButton = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lblHour
@@ -78,6 +80,8 @@
             this.btnHourDown.TabIndex = 3;
             this.btnHourDown.Text = "˅";
             this.btnHourDown.UseVisualStyleBackColor = true;
+            this.btnHourDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ButtonDown);
+            this.btnHourDown.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ButtonUp);
             // 
             // btnMinDown
             // 
@@ -88,6 +92,8 @@
             this.btnMinDown.TabIndex = 4;
             this.btnMinDown.Text = "˅";
             this.btnMinDown.UseVisualStyleBackColor = true;
+            this.btnMinDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ButtonDown);
+            this.btnMinDown.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ButtonUp);
             // 
             // btnHourUp
             // 
@@ -98,6 +104,8 @@
             this.btnHourUp.TabIndex = 5;
             this.btnHourUp.Text = "˄";
             this.btnHourUp.UseVisualStyleBackColor = true;
+            this.btnHourUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ButtonDown);
+            this.btnHourUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ButtonUp);
             // 
             // btnMinUp
             // 
@@ -108,6 +116,8 @@
             this.btnMinUp.TabIndex = 6;
             this.btnMinUp.Text = "˄";
             this.btnMinUp.UseVisualStyleBackColor = true;
+            this.btnMinUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ButtonDown);
+            this.btnMinUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ButtonUp);
             // 
             // btnOk
             // 
@@ -128,7 +138,11 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // Form2
+            // tmrButton
+            // 
+            this.tmrButton.Interval = 1000;
+            // 
+            // FormEditTime
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,7 +161,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form2";
+            this.Name = "FormEditTime";
             this.ShowIcon = false;
             this.Text = "Tijd Aanpassen";
             this.TopMost = true;
@@ -167,5 +181,6 @@
         private System.Windows.Forms.Button btnMinUp;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Timer tmrButton;
     }
 }
