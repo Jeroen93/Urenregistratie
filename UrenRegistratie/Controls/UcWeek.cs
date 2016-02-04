@@ -18,6 +18,11 @@ namespace UrenRegistratie.Controls
             _selectedWeek = DateTime.Today;
             btnPrevWeek.Click += (s, e) => ChangeWeek(-1);
             btnNextWeek.Click += (s, e) => ChangeWeek(1);
+            btnToday.Click += (s, e) =>
+            {
+                _selectedWeek = DateTime.Today;
+                Init();
+            };
         }
 
         public void Init()

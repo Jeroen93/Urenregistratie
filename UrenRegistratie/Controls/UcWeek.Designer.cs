@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.btnPrevWeek = new System.Windows.Forms.Button();
-            this.ucDay6 = new UcDay();
-            this.ucDay5 = new UcDay();
-            this.ucDay4 = new UcDay();
-            this.ucDay3 = new UcDay();
-            this.ucDay2 = new UcDay();
-            this.ucDay1 = new UcDay();
-            this.ucDay0 = new UcDay();
+            this.ucDay6 = new UrenRegistratie.Controls.UcDay();
+            this.ucDay5 = new UrenRegistratie.Controls.UcDay();
+            this.ucDay4 = new UrenRegistratie.Controls.UcDay();
+            this.ucDay3 = new UrenRegistratie.Controls.UcDay();
+            this.ucDay2 = new UrenRegistratie.Controls.UcDay();
+            this.ucDay1 = new UrenRegistratie.Controls.UcDay();
+            this.ucDay0 = new UrenRegistratie.Controls.UcDay();
             this.btnNextWeek = new System.Windows.Forms.Button();
+            this.btnToday = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPrevWeek
@@ -106,10 +107,20 @@
             this.btnNextWeek.Text = ">";
             this.btnNextWeek.UseVisualStyleBackColor = true;
             // 
+            // btnToday
+            // 
+            this.btnToday.Location = new System.Drawing.Point(338, 216);
+            this.btnToday.Name = "btnToday";
+            this.btnToday.Size = new System.Drawing.Size(75, 23);
+            this.btnToday.TabIndex = 9;
+            this.btnToday.Text = "Vandaag";
+            this.btnToday.UseVisualStyleBackColor = true;
+            // 
             // UcWeek
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnToday);
             this.Controls.Add(this.btnNextWeek);
             this.Controls.Add(this.ucDay6);
             this.Controls.Add(this.ucDay5);
@@ -136,5 +147,6 @@
         private UcDay ucDay5;
         private UcDay ucDay6;
         private System.Windows.Forms.Button btnNextWeek;
+        private System.Windows.Forms.Button btnToday;
     }
 }
