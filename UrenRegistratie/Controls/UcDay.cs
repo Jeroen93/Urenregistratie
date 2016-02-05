@@ -27,6 +27,7 @@ namespace UrenRegistratie.Controls
             {
                 lblIn.Text = $"In: {regs[0].CheckIn.ToShortTimeString()}";
                 lblOut.Text = $"Uit: {(regs.Last().CheckOut ?? DateTime.Now).ToShortTimeString()}";
+                lblOut.Font = new Font(lblOut.Font, regs.Last().CheckOut.HasValue ? FontStyle.Regular : FontStyle.Bold);
                 lblTotaal.Text = $"Totaal: {Registratie.TotalDuration(regs)}";
             }
         }

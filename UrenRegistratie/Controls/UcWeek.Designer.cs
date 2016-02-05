@@ -37,7 +37,7 @@
             this.ucDay1 = new UrenRegistratie.Controls.UcDay();
             this.ucDay0 = new UrenRegistratie.Controls.UcDay();
             this.btnNextWeek = new System.Windows.Forms.Button();
-            this.btnToday = new System.Windows.Forms.Button();
+            this.btnThisWeek = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPrevWeek
@@ -107,20 +107,20 @@
             this.btnNextWeek.Text = ">";
             this.btnNextWeek.UseVisualStyleBackColor = true;
             // 
-            // btnToday
+            // btnThisWeek
             // 
-            this.btnToday.Location = new System.Drawing.Point(338, 216);
-            this.btnToday.Name = "btnToday";
-            this.btnToday.Size = new System.Drawing.Size(75, 23);
-            this.btnToday.TabIndex = 9;
-            this.btnToday.Text = "Vandaag";
-            this.btnToday.UseVisualStyleBackColor = true;
+            this.btnThisWeek.Location = new System.Drawing.Point(338, 216);
+            this.btnThisWeek.Name = "btnThisWeek";
+            this.btnThisWeek.Size = new System.Drawing.Size(75, 23);
+            this.btnThisWeek.TabIndex = 9;
+            this.btnThisWeek.Text = "Vandaag";
+            this.btnThisWeek.UseVisualStyleBackColor = true;
             // 
             // UcWeek
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnToday);
+            this.Controls.Add(this.btnThisWeek);
             this.Controls.Add(this.btnNextWeek);
             this.Controls.Add(this.ucDay6);
             this.Controls.Add(this.ucDay5);
@@ -147,6 +147,6 @@
         private UcDay ucDay5;
         private UcDay ucDay6;
         private System.Windows.Forms.Button btnNextWeek;
-        private System.Windows.Forms.Button btnToday;
+        private System.Windows.Forms.Button btnThisWeek;
     }
 }

@@ -17,12 +17,8 @@ namespace UrenRegistratie.Controls
             InitializeComponent();
             _selectedWeek = DateTime.Today;
             btnPrevWeek.Click += (s, e) => ChangeWeek(-1);
+            btnThisWeek.Click += (s, e) => ChangeWeek(0);
             btnNextWeek.Click += (s, e) => ChangeWeek(1);
-            btnToday.Click += (s, e) =>
-            {
-                _selectedWeek = DateTime.Today;
-                Init();
-            };
         }
 
         public void Init()
@@ -32,13 +28,14 @@ namespace UrenRegistratie.Controls
             var sunday = _selectedWeek.AddDays(-(int)_selectedWeek.DayOfWeek);
             for (var i = 0; i < 7; i++)
             {
+                //Gets the UcDay with the name containing the day of the week number, and give it the registrations belonging to that day
                 ucDays.First(u => u.Name.Contains(i.ToString())).SetRegistrations(_registraties[i], sunday.AddDays(i));
             }
         }
 
         private void ChangeWeek(int week)
         {
-            _selectedWeek = _selectedWeek.AddDays(week * 7);
+            _selectedWeek = week == 0 ? DateTime.Today : _selectedWeek.AddDays(week * 7);
             Init();
         }
     }

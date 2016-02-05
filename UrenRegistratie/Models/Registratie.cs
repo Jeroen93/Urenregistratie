@@ -53,6 +53,10 @@ namespace UrenRegistratie.Models
             return Difference(regs, DateTime.Today);
         }
 
+        /// <summary>
+        /// Calculates the difference between the hours worked in a certain period, and the hours that should have been worked
+        /// in the period from the start of the contract until end
+        /// </summary>
         public static string Difference(List<Registratie> regs, DateTime end)
         {
             var total = TotalTimeSpan(regs);
