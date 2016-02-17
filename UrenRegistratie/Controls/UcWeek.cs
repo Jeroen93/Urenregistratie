@@ -7,10 +7,13 @@ using UrenRegistratie.Models;
 
 namespace UrenRegistratie.Controls
 {
+    public delegate void SetFormDelegate();
+
     public partial class UcWeek : UserControl
     {
         private List<List<Registratie>> _registraties;
         private DateTime _selectedWeek;
+        public SetFormDelegate SetFormOnMain;
 
         public UcWeek()
         {
@@ -29,7 +32,9 @@ namespace UrenRegistratie.Controls
             for (var i = 0; i < 7; i++)
             {
                 //Gets the UcDay with the name containing the day of the week number, and give it the registrations belonging to that day
-                ucDays.First(u => u.Name.Contains(i.ToString())).SetRegistrations(_registraties[i], sunday.AddDays(i));
+                var day = ucDays.First(u => u.Name.Contains(i.ToString()));
+                day.SetRegistrations(_registraties[i], sunday.AddDays(i));
+                day.SetFormOnMain += SetFormOnMain;
             }
         }
 

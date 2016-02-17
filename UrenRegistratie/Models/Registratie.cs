@@ -77,5 +77,10 @@ namespace UrenRegistratie.Models
             var min = Math.Floor(Math.Abs(duration * 60) % 60);
             return (duration < 0 ? "-" : "") + hrs + ":" + (min < 10 ? "0" : "") + min;
         }
+
+        public override string ToString()
+        {
+            return $"{CheckIn.ToShortTimeString()} - {CheckOut?.ToShortTimeString()} - {Location}";
+        }
     }
 }

@@ -90,6 +90,14 @@ namespace UrenRegistratie.Layers
             return true;
         }
 
+        public static bool Delete(Registratie reg)
+        {
+            if (reg == null) return false;
+            _table.DeleteOnSubmit(reg);
+            _context.SubmitChanges();
+            return true;
+        }
+
         public static Registratie Last()
         {
             try

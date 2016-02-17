@@ -90,6 +90,12 @@
     <Compile Include="Forms\formMain.Designer.cs">
       <DependentUpon>formMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormModifyReg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormModifyReg.Designer.cs">
+      <DependentUpon>FormModifyReg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Layers\DataLayer.cs" />
     <Compile Include="Layers\ExportLayer.cs" />
     <Compile Include="Models\Contract.cs" />
@@ -111,6 +117,9 @@
     <EmbeddedResource Include="Forms\formMain.resx">
       <DependentUpon>formMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormModifyReg.resx">
+      <DependentUpon>FormModifyReg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -119,6 +128,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -159,7 +169,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Assets\add.ico" />
     <Content Include="Assets\Alecive-Flatwoken-Apps-Clock.ico" />
+    <EmbeddedResource Include="Assets\Pencil.ico" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

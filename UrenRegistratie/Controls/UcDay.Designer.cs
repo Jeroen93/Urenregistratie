@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UcDay));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblTotaal = new System.Windows.Forms.Label();
             this.lblOut = new System.Windows.Forms.Label();
@@ -38,6 +40,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnEdit);
             this.groupBox1.Controls.Add(this.lblDate);
             this.groupBox1.Controls.Add(this.lblTotaal);
             this.groupBox1.Controls.Add(this.lblOut);
@@ -47,6 +50,16 @@
             this.groupBox1.Size = new System.Drawing.Size(97, 143);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.Location = new System.Drawing.Point(71, 10);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(23, 23);
+            this.btnEdit.TabIndex = 4;
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.BtnEditClick);
             // 
             // lblDate
             // 
@@ -105,5 +118,6 @@
         private System.Windows.Forms.Label lblTotaal;
         private System.Windows.Forms.Label lblOut;
         private System.Windows.Forms.Label lblIn;
+        private System.Windows.Forms.Button btnEdit;
     }
 }

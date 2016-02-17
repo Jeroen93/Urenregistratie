@@ -29,6 +29,7 @@ namespace UrenRegistratie.Forms
             tpChart.Controls.Add(chrtUren);
             chrtUren.Location = new Point(0, 0);
             tpUren.Controls.Add(ucWeek);
+            ucWeek.SetFormOnMain = SetForm;
         }
 
         private void SetForm()
