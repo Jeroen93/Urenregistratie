@@ -25,10 +25,7 @@ namespace UrenRegistratie.Controls
             if (_registraties.Count == 0) return;
             var form = new FormModifyReg(_date);
             form.Show();
-            form.FormClosed += (s, e) =>
-            {
-                SetFormOnMain?.Invoke();
-            };
+            form.FormClosed += (s, e) => SetFormOnMain?.Invoke();
         }
 
         public void SetRegistrations(List<Registratie> regs, DateTime date)

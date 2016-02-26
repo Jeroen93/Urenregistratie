@@ -30,16 +30,16 @@
         {
             this.lbRegs = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.lblCheckIn = new System.Windows.Forms.Label();
-            this.lblCheckOut = new System.Windows.Forms.Label();
-            this.lblLocation = new System.Windows.Forms.Label();
             this.lblTransport = new System.Windows.Forms.Label();
+            this.lblLocation = new System.Windows.Forms.Label();
+            this.lblCheckOut = new System.Windows.Forms.Label();
+            this.lblCheckIn = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnOk = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,50 +69,41 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // label1
+            // lblTransport
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Klok in:";
+            this.lblTransport.AutoSize = true;
+            this.lblTransport.Location = new System.Drawing.Point(83, 76);
+            this.lblTransport.Name = "lblTransport";
+            this.lblTransport.Size = new System.Drawing.Size(29, 13);
+            this.lblTransport.TabIndex = 8;
+            this.lblTransport.Text = "Auto";
             // 
-            // label2
+            // lblLocation
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 42);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Klok uit:";
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.Location = new System.Drawing.Point(83, 59);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(66, 13);
+            this.lblLocation.TabIndex = 7;
+            this.lblLocation.Text = "CareServant";
             // 
-            // label3
+            // lblCheckOut
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 59);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Locatie:";
+            this.lblCheckOut.AutoSize = true;
+            this.lblCheckOut.Location = new System.Drawing.Point(83, 42);
+            this.lblCheckOut.Name = "lblCheckOut";
+            this.lblCheckOut.Size = new System.Drawing.Size(34, 13);
+            this.lblCheckOut.TabIndex = 6;
+            this.lblCheckOut.Text = "00:00";
             // 
-            // label4
+            // lblCheckIn
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 76);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Vervoer:";
-            // 
-            // btnOk
-            // 
-            this.btnOk.Location = new System.Drawing.Point(280, 167);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 2;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = true;
+            this.lblCheckIn.AutoSize = true;
+            this.lblCheckIn.Location = new System.Drawing.Point(83, 25);
+            this.lblCheckIn.Name = "lblCheckIn";
+            this.lblCheckIn.Size = new System.Drawing.Size(34, 13);
+            this.lblCheckIn.TabIndex = 5;
+            this.lblCheckIn.Text = "00:00";
             // 
             // btnDelete
             // 
@@ -124,41 +115,50 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // lblCheckIn
+            // label4
             // 
-            this.lblCheckIn.AutoSize = true;
-            this.lblCheckIn.Location = new System.Drawing.Point(83, 25);
-            this.lblCheckIn.Name = "lblCheckIn";
-            this.lblCheckIn.Size = new System.Drawing.Size(34, 13);
-            this.lblCheckIn.TabIndex = 5;
-            this.lblCheckIn.Text = "00:00";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 76);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Vervoer:";
             // 
-            // lblCheckOut
+            // label3
             // 
-            this.lblCheckOut.AutoSize = true;
-            this.lblCheckOut.Location = new System.Drawing.Point(83, 42);
-            this.lblCheckOut.Name = "lblCheckOut";
-            this.lblCheckOut.Size = new System.Drawing.Size(34, 13);
-            this.lblCheckOut.TabIndex = 6;
-            this.lblCheckOut.Text = "00:00";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 59);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Locatie:";
             // 
-            // lblLocation
+            // label2
             // 
-            this.lblLocation.AutoSize = true;
-            this.lblLocation.Location = new System.Drawing.Point(83, 59);
-            this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(66, 13);
-            this.lblLocation.TabIndex = 7;
-            this.lblLocation.Text = "CareServant";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 42);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Klok uit:";
             // 
-            // lblTransport
+            // label1
             // 
-            this.lblTransport.AutoSize = true;
-            this.lblTransport.Location = new System.Drawing.Point(83, 76);
-            this.lblTransport.Name = "lblTransport";
-            this.lblTransport.Size = new System.Drawing.Size(29, 13);
-            this.lblTransport.TabIndex = 8;
-            this.lblTransport.Text = "Auto";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Klok in:";
+            // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(280, 167);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.TabIndex = 2;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
             // 
             // FormModifyReg
             // 

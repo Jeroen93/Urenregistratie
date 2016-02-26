@@ -27,8 +27,9 @@ namespace UrenRegistratie.Controls
         public void Init()
         {
             _registraties = Data.SortByDaysOfWeek(Data.GetRegsForWeek(_selectedWeek));
-            var ucDays = Controls.OfType<UcDay>().ToList();
             var sunday = _selectedWeek.AddDays(-(int)_selectedWeek.DayOfWeek);
+            var ucDays = Controls.OfType<UcDay>().ToList();
+            ucDays.ForEach(d => d.SetFormOnMain -= SetFormOnMain);
             for (var i = 0; i < 7; i++)
             {
                 //Gets the UcDay with the name containing the day of the week number, and give it the registrations belonging to that day
