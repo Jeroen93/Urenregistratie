@@ -22,7 +22,7 @@ namespace UrenRegistratie.Forms
 
             timer1.Tick += (s, e) => SetForm();
             FormClosing += (s, e) => Data.CloseConnection();
-            btnClockIn.Click += (s, e) => OpenForm(new FormLoc());
+            btnClockIn.Click += (s, e) => OpenFormLoc();
             btnClockOut.Click += (s, e) => { if (Data.CheckOut()) SetForm(); };
             lblOnline.Click += (s, e) => OpenForm(new FormEditTime());
             dtOverzicht.ValueChanged += (s, e) => SetBtnGenerate();            
@@ -82,6 +82,16 @@ namespace UrenRegistratie.Forms
             {
                 MessageBox.Show($"Kan het bestand niet wegschrijven: {ex.Message}", "Er ging iets mis..",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void OpenFormLoc()
+        {
+            using (var form = new FormLoc())
+            {
+                if (form.ShowDialog() != DialogResult.OK) return;
+                if (Data.CheckIn(form.Loc, form.Transport, form.Distance))
+                    SetForm();
             }
         }
 

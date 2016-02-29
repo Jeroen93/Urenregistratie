@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using UrenRegistratie.Layers;
 
 namespace UrenRegistratie.Forms
 {
     public partial class FormLoc : Form
     {
+        public string Loc { get; private set; }
+        public string Transport { get; private set; }
+        public double Distance { get; private set; }
+
         public FormLoc()
         {
             InitializeComponent();
             btnOk.Click += (s, e) =>
             {
-                var location = TextOfSelected(grpLoc);
-                var vervoer = radioThuis.Checked ? "" : TextOfSelected(grpVervoer);
-                var dist = Convert.ToDouble(tbKm.Text.Replace('.', ','));
-                if (Data.CheckIn(location, vervoer, dist)) Close();
+                Loc = TextOfSelected(grpLoc);
+                Transport = radioThuis.Checked ? "" : TextOfSelected(grpVervoer);
+                Distance = Convert.ToDouble(tbKm.Text.Replace('.', ','));
+                DialogResult = DialogResult.OK;
+                Close();
             };
             radioOV.CheckedChanged += (s, e) =>
             {

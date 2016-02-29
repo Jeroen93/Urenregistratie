@@ -61,7 +61,12 @@ namespace UrenRegistratie.Layers
         {
             if (IsLoggedIn()) return false;
             var reg = new Registratie(location, modeOfTransport, dist);
-            _table.InsertOnSubmit(reg);
+            return CheckIn(reg);
+        }
+
+        public static bool CheckIn(Registratie registratie)
+        {
+            _table.InsertOnSubmit(registratie);
             _context.SubmitChanges();
             return true;
         }

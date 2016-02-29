@@ -22,8 +22,7 @@ namespace UrenRegistratie.Controls
 
         private void BtnEditClick(object sender, EventArgs eventArgs)
         {
-            if (_registraties.Count == 0) return;
-            var form = new FormModifyReg(_date);
+            var form = new FormModifyReg(_date, _registraties.Count == 0);
             form.Show();
             form.FormClosed += (s, e) => SetFormOnMain?.Invoke();
         }

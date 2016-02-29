@@ -30,10 +30,11 @@
         {
             this.lbRegs = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtCheckOut = new System.Windows.Forms.DateTimePicker();
+            this.dtCheckIn = new System.Windows.Forms.DateTimePicker();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.lblTransport = new System.Windows.Forms.Label();
             this.lblLocation = new System.Windows.Forms.Label();
-            this.lblCheckOut = new System.Windows.Forms.Label();
-            this.lblCheckIn = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,10 +54,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dtCheckOut);
+            this.groupBox1.Controls.Add(this.dtCheckIn);
+            this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.lblTransport);
             this.groupBox1.Controls.Add(this.lblLocation);
-            this.groupBox1.Controls.Add(this.lblCheckOut);
-            this.groupBox1.Controls.Add(this.lblCheckIn);
             this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
@@ -69,10 +71,42 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // dtCheckOut
+            // 
+            this.dtCheckOut.CustomFormat = "HH:mm";
+            this.dtCheckOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtCheckOut.Location = new System.Drawing.Point(86, 45);
+            this.dtCheckOut.Name = "dtCheckOut";
+            this.dtCheckOut.ShowUpDown = true;
+            this.dtCheckOut.Size = new System.Drawing.Size(55, 20);
+            this.dtCheckOut.TabIndex = 4;
+            this.dtCheckOut.ValueChanged += new System.EventHandler(this.dt_ValueChanged);
+            // 
+            // dtCheckIn
+            // 
+            this.dtCheckIn.CustomFormat = "HH:mm";
+            this.dtCheckIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtCheckIn.Location = new System.Drawing.Point(86, 21);
+            this.dtCheckIn.Name = "dtCheckIn";
+            this.dtCheckIn.ShowUpDown = true;
+            this.dtCheckIn.Size = new System.Drawing.Size(55, 20);
+            this.dtCheckIn.TabIndex = 3;
+            this.dtCheckIn.ValueChanged += new System.EventHandler(this.dt_ValueChanged);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(88, 114);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(79, 23);
+            this.btnAdd.TabIndex = 9;
+            this.btnAdd.Text = "Toevoegen";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // lblTransport
             // 
             this.lblTransport.AutoSize = true;
-            this.lblTransport.Location = new System.Drawing.Point(83, 76);
+            this.lblTransport.Location = new System.Drawing.Point(83, 89);
             this.lblTransport.Name = "lblTransport";
             this.lblTransport.Size = new System.Drawing.Size(29, 13);
             this.lblTransport.TabIndex = 8;
@@ -81,35 +115,17 @@
             // lblLocation
             // 
             this.lblLocation.AutoSize = true;
-            this.lblLocation.Location = new System.Drawing.Point(83, 59);
+            this.lblLocation.Location = new System.Drawing.Point(83, 72);
             this.lblLocation.Name = "lblLocation";
             this.lblLocation.Size = new System.Drawing.Size(66, 13);
             this.lblLocation.TabIndex = 7;
             this.lblLocation.Text = "CareServant";
             // 
-            // lblCheckOut
-            // 
-            this.lblCheckOut.AutoSize = true;
-            this.lblCheckOut.Location = new System.Drawing.Point(83, 42);
-            this.lblCheckOut.Name = "lblCheckOut";
-            this.lblCheckOut.Size = new System.Drawing.Size(34, 13);
-            this.lblCheckOut.TabIndex = 6;
-            this.lblCheckOut.Text = "00:00";
-            // 
-            // lblCheckIn
-            // 
-            this.lblCheckIn.AutoSize = true;
-            this.lblCheckIn.Location = new System.Drawing.Point(83, 25);
-            this.lblCheckIn.Name = "lblCheckIn";
-            this.lblCheckIn.Size = new System.Drawing.Size(34, 13);
-            this.lblCheckIn.TabIndex = 5;
-            this.lblCheckIn.Text = "00:00";
-            // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(9, 114);
+            this.btnDelete.Location = new System.Drawing.Point(6, 114);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(158, 23);
+            this.btnDelete.Size = new System.Drawing.Size(79, 23);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Verwijderen";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -118,7 +134,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 76);
+            this.label4.Location = new System.Drawing.Point(6, 89);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 3;
@@ -127,7 +143,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 59);
+            this.label3.Location = new System.Drawing.Point(6, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 2;
@@ -136,7 +152,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 42);
+            this.label2.Location = new System.Drawing.Point(6, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 1;
@@ -190,10 +206,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Label lblCheckOut;
-        private System.Windows.Forms.Label lblCheckIn;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label lblTransport;
         private System.Windows.Forms.Label lblLocation;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.DateTimePicker dtCheckIn;
+        private System.Windows.Forms.DateTimePicker dtCheckOut;
     }
 }
