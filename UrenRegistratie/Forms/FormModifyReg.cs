@@ -11,6 +11,7 @@ namespace UrenRegistratie.Forms
         private List<Registratie> _registraties;
         private DateTime _date;
         private readonly Addmode _add;
+        private bool LocationAdded = false;
 
         public FormModifyReg(DateTime date, bool addmode)
         {
@@ -61,8 +62,10 @@ namespace UrenRegistratie.Forms
             {
                 if (form.ShowDialog() != DialogResult.OK) return;
                 lblLocation.Text = _add.Loc = form.Loc;
+                lblTransport.Visible = true;
                 lblTransport.Text = _add.Transport = form.Transport;
                 _add.Distance = form.Distance;
+                LocationAdded = true;
             }
         }
 

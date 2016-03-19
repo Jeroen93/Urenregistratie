@@ -56,8 +56,8 @@ namespace UrenRegistratie.Forms
             this.chrtUren = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpChart = new System.Windows.Forms.TabPage();
+            this.ucWeek = new UrenRegistratie.Controls.UcWeek();
             this.tpUren = new System.Windows.Forms.TabPage();
-            this.ucWeek = new UcWeek();
             this.grpKlokken.SuspendLayout();
             this.grpTotalen.SuspendLayout();
             this.grpOverzicht.SuspendLayout();
@@ -208,6 +208,7 @@ namespace UrenRegistratie.Forms
             this.dtOverzicht.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtOverzicht.Location = new System.Drawing.Point(7, 45);
             this.dtOverzicht.Name = "dtOverzicht";
+            this.dtOverzicht.ShowUpDown = true;
             this.dtOverzicht.Size = new System.Drawing.Size(200, 20);
             this.dtOverzicht.TabIndex = 0;
             // 
@@ -262,6 +263,13 @@ namespace UrenRegistratie.Forms
             this.tpChart.Text = "Grafiek";
             this.tpChart.UseVisualStyleBackColor = true;
             // 
+            // ucWeek
+            // 
+            this.ucWeek.Location = new System.Drawing.Point(7, 6);
+            this.ucWeek.Name = "ucWeek";
+            this.ucWeek.Size = new System.Drawing.Size(756, 286);
+            this.ucWeek.TabIndex = 0;
+            // 
             // tpUren
             // 
             this.tpUren.Location = new System.Drawing.Point(4, 22);
@@ -271,13 +279,6 @@ namespace UrenRegistratie.Forms
             this.tpUren.TabIndex = 1;
             this.tpUren.Text = "Uren";
             this.tpUren.UseVisualStyleBackColor = true;
-            // 
-            // ucWeek
-            // 
-            this.ucWeek.Location = new System.Drawing.Point(7, 6);
-            this.ucWeek.Name = "ucWeek";
-            this.ucWeek.Size = new System.Drawing.Size(756, 286);
-            this.ucWeek.TabIndex = 0;
             // 
             // FormMain
             // 

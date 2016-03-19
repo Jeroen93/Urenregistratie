@@ -10,7 +10,7 @@ namespace UrenRegistratie.Models
         public double Distance { get; set; }
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
-        private DateTime _date;
+        private readonly DateTime _date;
 
         public Addmode(DateTime date)
         {
@@ -34,7 +34,7 @@ namespace UrenRegistratie.Models
             var valid = CheckIn.CompareTo(CheckOut) == -1;
             valid = valid && CheckIn.Date.Equals(_date);
             valid = valid && CheckOut.Date.Equals(_date);
-            valid = valid && !"".Equals(Loc);
+            valid = valid && Loc != null;
             return valid;
         }
     }
