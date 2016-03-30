@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using UrenRegistratie.Layers;
 using UrenRegistratie.Models;
@@ -10,14 +11,14 @@ namespace UrenRegistratie.Forms
     {
         private List<Registratie> _registraties;
         private DateTime _date;
-        private readonly Addmode _add;
-        private bool LocationAdded = false;
+        private Addmode _add;
 
         public FormModifyReg(DateTime date, bool addmode)
         {
             InitializeComponent();
             _date = date;
-            _add = new Addmode(_date) {IsAdding = addmode};
+            gbRegData.Text = _date.ToShortDateString();
+            _add = new Addmode(_date) { IsAdding = addmode };
             btnOk.Click += (s, e) => Close();
             lblLocation.Click += (s, e) => OpenFormLoc();
             lbRegs.SelectedIndexChanged += (s, e) => SetLabels();
@@ -32,21 +33,24 @@ namespace UrenRegistratie.Forms
 
         private void EnableAddmode()
         {
-            dtCheckIn.Value = _date.Date.AddHours(8.0);
+            dtCheckIn.Value = _date.Date.AddHours(9.0);
             dtCheckOut.Value = _date.Date.AddHours(17.0);
             lblLocation.Text = @"Niet ingesteld";
-            label4.Text = lblTransport.Text = "";
+            lblLocation.Font = new Font(lblTransport.Font, FontStyle.Bold);
+            lblLocation.Cursor = Cursors.Hand;
+            lblTransportValue.Text = "";
+            btnEditDelete.Text = @"Annuleren";
         }
 
         private void SetLabels()
         {
             var reg = _registraties[lbRegs.SelectedIndex];
-            groupBox1.Text = _date.ToShortDateString();
             dtCheckIn.Value = reg.CheckIn;
             dtCheckOut.Value = reg.CheckOut ?? DateTime.Now;
             dtCheckIn.Enabled = dtCheckOut.Enabled = _add.IsAdding;
             lblLocation.Text = reg.Location;
-            lblTransport.Text = reg.ModeOfTransport == "" ? "n.v.t" : reg.ModeOfTransport;
+            lblTransportValue.Text = reg.ModeOfTransport == "" ? "n.v.t" : reg.ModeOfTransport;
+            lblLocation.Cursor = DefaultCursor;
         }
 
         private void FillBox()
@@ -58,20 +62,21 @@ namespace UrenRegistratie.Forms
 
         private void OpenFormLoc()
         {
+            if (!_add.IsAdding)
+                return;
             using (var form = new FormLoc())
             {
                 if (form.ShowDialog() != DialogResult.OK) return;
-                lblLocation.Text = _add.Loc = form.Loc;
-                lblTransport.Visible = true;
-                lblTransport.Text = _add.Transport = form.Transport;
+                lblLocation.Text = _add.Location = form.Loc;
+                lblLocation.Font = new Font(lblTransport.Font, FontStyle.Regular);
+                lblTransportValue.Text = _add.ModeOfTransport = form.Transport;
                 _add.Distance = form.Distance;
-                LocationAdded = true;
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show(@"Weet u zeker dat u deze registratie wilt verwijderen?", 
+            var result = MessageBox.Show(@"Weet u zeker dat u deze registratie wilt verwijderen?",
                 @"Registratie verwijderen", MessageBoxButtons.YesNo);
             if (result == DialogResult.No) return;
             try
@@ -86,7 +91,7 @@ namespace UrenRegistratie.Forms
                 }
                 FillBox();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Er ging iets mis met het verwijderen: {ex.Message}", @"Registratie verwijderen mislukt");
             }
@@ -94,14 +99,17 @@ namespace UrenRegistratie.Forms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var reg = _add.ToRegistratie();
-            if (!_add.IsValid())
+            string reason;
+            if (!_add.IsValid(out reason))
             {
-                MessageBox.Show(@"Vul goed in");
-            }else if (Data.CheckIn(reg))
+                MessageBox.Show(reason, @"Toevoegen mislukt");
+            }
+            else if (Data.CheckIn(_add.ToRegistratie()))
             {
+                _add = new Addmode(_date);
                 _registraties = Data.GetRegsForDay(_date);
                 FillBox();
+                SetLabels();
             }
         }
 

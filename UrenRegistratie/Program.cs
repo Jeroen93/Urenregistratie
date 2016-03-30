@@ -1,4 +1,7 @@
 ﻿using System;
+#if !DEBUG
+using System.Diagnostics;
+#endif
 using System.Windows.Forms;
 using UrenRegistratie.Forms;
 
@@ -12,6 +15,10 @@ namespace UrenRegistratie
         [STAThread]
         private static void Main()
         {
+#if !DEBUG
+            if (Debugger.IsAttached)
+                MessageBox.Show(@"In Releasemode!");
+#endif
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());

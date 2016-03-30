@@ -2,14 +2,9 @@
 
 namespace UrenRegistratie.Models
 {
-    internal class Addmode
+    internal class Addmode : Registratie
     {
         public bool IsAdding { get; set; }
-        public string Loc { get; set; }
-        public string Transport { get; set; }
-        public double Distance { get; set; }
-        public DateTime CheckIn { get; set; }
-        public DateTime CheckOut { get; set; }
         private readonly DateTime _date;
 
         public Addmode(DateTime date)
@@ -23,18 +18,30 @@ namespace UrenRegistratie.Models
             {
                 CheckIn = CheckIn,
                 CheckOut = CheckOut,
-                Location = Loc,
-                ModeOfTransport = Transport,
+                Location = Location,
+                ModeOfTransport = ModeOfTransport,
                 Distance = Distance
             };
         }
 
-        public bool IsValid()
+        public bool IsValid(out string reason)
         {
-            var valid = CheckIn.CompareTo(CheckOut) == -1;
-            valid = valid && CheckIn.Date.Equals(_date);
-            valid = valid && CheckOut.Date.Equals(_date);
-            valid = valid && Loc != null;
+            reason = "De gegevens zijn niet goed ingevuld:" + Environment.NewLine;
+            var result = CheckIn.CompareTo(CheckOut) == -1;
+            if (!result) reason += " - CheckIn moet voor CheckOut zijn" + Environment.NewLine;
+            var valid = result;
+
+            result = CheckIn.Date.Equals(_date);
+            if (!result) reason += " - CheckIn moet op dezelfde dag zijn" + Environment.NewLine;
+            valid = valid && result;
+
+            if (CheckOut != null) result = CheckOut.Value.Date.Equals(_date);
+            if (!result) reason += " - CheckOut moet op dezelfde dag zijn" + Environment.NewLine;
+            valid = valid && result;
+
+            result = Location != null;
+            if (!result) reason += " - Locatie is niet ingevuld" + Environment.NewLine;
+            valid = valid && result;
             return valid;
         }
     }
