@@ -106,7 +106,7 @@
             // lblTransportValue
             // 
             this.lblTransportValue.AutoSize = true;
-            this.lblTransportValue.Location = new System.Drawing.Point(83, 89);
+            this.lblTransportValue.Location = new System.Drawing.Point(83, 94);
             this.lblTransportValue.Name = "lblTransportValue";
             this.lblTransportValue.Size = new System.Drawing.Size(29, 13);
             this.lblTransportValue.TabIndex = 8;
@@ -115,7 +115,7 @@
             // lblLocation
             // 
             this.lblLocation.AutoSize = true;
-            this.lblLocation.Location = new System.Drawing.Point(83, 72);
+            this.lblLocation.Location = new System.Drawing.Point(83, 71);
             this.lblLocation.Name = "lblLocation";
             this.lblLocation.Size = new System.Drawing.Size(66, 13);
             this.lblLocation.TabIndex = 7;
@@ -134,7 +134,7 @@
             // lblTransport
             // 
             this.lblTransport.AutoSize = true;
-            this.lblTransport.Location = new System.Drawing.Point(6, 89);
+            this.lblTransport.Location = new System.Drawing.Point(6, 94);
             this.lblTransport.Name = "lblTransport";
             this.lblTransport.Size = new System.Drawing.Size(47, 13);
             this.lblTransport.TabIndex = 3;
@@ -143,7 +143,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 72);
+            this.label3.Location = new System.Drawing.Point(6, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 2;

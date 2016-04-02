@@ -4,7 +4,6 @@ namespace UrenRegistratie.Models
 {
     internal class Addmode : Registratie
     {
-        public bool IsAdding { get; set; }
         private readonly DateTime _date;
 
         public Addmode(DateTime date)
@@ -41,8 +40,7 @@ namespace UrenRegistratie.Models
 
             result = Location != null;
             if (!result) reason += " - Locatie is niet ingevuld" + Environment.NewLine;
-            valid = valid && result;
-            return valid;
+            return valid && result;
         }
     }
 }

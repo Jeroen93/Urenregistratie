@@ -61,14 +61,7 @@ namespace UrenRegistratie.Layers
         {
             if (IsLoggedIn()) return false;
             var reg = new Registratie(location, modeOfTransport, dist);
-            return CheckIn(reg);
-        }
-
-        public static bool CheckIn(Registratie registratie)
-        {
-            _table.InsertOnSubmit(registratie);
-            _context.SubmitChanges();
-            return true;
+            return Add(reg);
         }
 
         public static bool CheckOut()
@@ -80,16 +73,23 @@ namespace UrenRegistratie.Layers
             return true;
         }
 
-        public static bool Update(DateTime registration)
+        public static bool Add(Registratie reg)
+        {
+            _table.InsertOnSubmit(reg);
+            _context.SubmitChanges();
+            return true;
+        }
+
+        public static bool Update(DateTime time)
         {
             var reg = Last();
             if (IsLoggedIn())
             {
-                reg.CheckIn = registration;
+                reg.CheckIn = time;
             }
             else
             {
-                reg.CheckOut = registration;
+                reg.CheckOut = time;
             }
             _context.SubmitChanges();
             return true;
