@@ -28,7 +28,7 @@ namespace UrenRegistratie.Forms
             _registraties = Data.GetRegsForDay(_date);
             _add = new Addmode(_date);
             SetMode(add ? FormMode.Add : FormMode.View);
-            ChangeFormToMode(_formMode);
+            if (add) ChangeFormToMode(_formMode);
         }
 
         private void SetMode(FormMode mode)
@@ -73,6 +73,7 @@ namespace UrenRegistratie.Forms
             }
             else if (Data.Add(_add.ToRegistratie()))
             {
+                _registraties = Data.GetRegsForDay(_date);
                 _add = new Addmode(_date);
                 SetMode(FormMode.View);
             }
@@ -146,12 +147,10 @@ namespace UrenRegistratie.Forms
                     if (_registraties.Count == 0)
                     {
                         Close();
+                        return;
                     }
-                    else
-                    {
-                        _registraties = Data.GetRegsForDay(_date);
-                        SetMode(FormMode.View);
-                    }
+                    lblLocation.Font = new Font(lblTransport.Font, FontStyle.Regular);
+                    SetMode(FormMode.View);
                     break;
                 case FormMode.Edit:
                     DeleteReg();
