@@ -169,8 +169,10 @@ namespace UrenRegistratie.Forms
                     AddNewReg();
                     break;
                 case FormMode.Edit:
-                    //Save the modified reg
-                    SetMode(FormMode.View);
+                    _selectedReg.CheckIn = dtCheckIn.Value;
+                    _selectedReg.CheckOut = dtCheckOut.Value;
+                    if (Data.SubmitChanges())
+                        SetMode(FormMode.View);
                     break;
             }
         }
