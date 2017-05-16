@@ -98,6 +98,8 @@
     </Compile>
     <Compile Include="Layers\DataLayer.cs" />
     <Compile Include="Layers\ExportLayer.cs" />
+    <Compile Include="Layers\GraphLayer.cs" />
+    <Compile Include="Layers\StringLayer.cs" />
     <Compile Include="Models\Addmode.cs" />
     <Compile Include="Models\Contract.cs" />
     <Compile Include="Models\Registratie.cs" />

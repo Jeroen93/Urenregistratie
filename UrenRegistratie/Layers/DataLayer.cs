@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 using UrenRegistratie.Models;
 
 namespace UrenRegistratie.Layers
@@ -152,37 +151,9 @@ namespace UrenRegistratie.Layers
             return _table.Where(r => r.CheckIn.Date == dt.Date).ToList();
         }
 
-        public static Series GetSeries(Func<DateTime, double> method)
+        public static DateTime SetDayOfWeek(this DateTime dt, double days)
         {
-            var s = new Series
-            {
-                ChartType = SeriesChartType.Spline,
-                XValueType = ChartValueType.DateTime,
-                MarkerStyle = method == WorkedHours ? MarkerStyle.Square : MarkerStyle.None,
-            };
-            var d = ToWednesday(new DateTime(DateTime.Today.Year, 1, 1));
-
-            do
-            {
-                s.Points.AddXY(d, method(d));
-                d = d.AddDays(7);
-            } while (!d.Equals(ToWednesday(DateTime.Today).AddDays(14)));
-            return s;
-        }
-
-        public static double WorkedHours(DateTime d)
-        {
-            return Convert.ToDouble(Registratie.TotalDuration(GetRegsForWeek(d)).Replace(':', ','));
-        }
-
-        public static double HoursByContract(DateTime d)
-        {
-            return d.CompareTo(Contract.Begin) == 1 && d.CompareTo(Contract.End) == -1 ? Contract.Uren : 0.0;
-        }
-
-        private static DateTime ToWednesday(DateTime d)
-        {
-            return d.AddDays(-(double)d.DayOfWeek + 3.0);
+            return dt.AddDays(-(double) dt.DayOfWeek + days);
         }
 
         public static List<List<Registratie>> SortByDaysOfWeek(List<Registratie> regs)

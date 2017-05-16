@@ -26,7 +26,7 @@ namespace UrenRegistratie.Forms
             btnClockOut.Click += (s, e) => { if (Data.CheckOut()) SetForm(); };
             lblOnline.Click += (s, e) => OpenForm(new FormEditTime());
             dtOverzicht.ValueChanged += (s, e) => SetBtnGenerate();            
-            chrtUren.Series[1] = Data.GetSeries(Data.HoursByContract);
+            chrtUren.Series[1] = GraphLayer.GetSeries(GraphLayer.HoursByContract);
             tpChart.Controls.Add(chrtUren);
             chrtUren.Location = new Point(0, 0);
             tpUren.Controls.Add(ucWeek);
@@ -43,14 +43,12 @@ namespace UrenRegistratie.Forms
             if (reg == null) return;
             SetBtnGenerate();
             ucWeek.Init();
-            lblOnline.Text = reg.CheckOut == null ?
-                $"Aanwezig sinds {reg.CheckIn.ToShortTimeString()}    ({Registratie.TotalDuration(Data.GetRegsForDay(reg.CheckIn))})"
-                : $"Laatst uitgeklokt op {((DateTime) reg.CheckOut).ToShortDateString()} om {((DateTime) reg.CheckOut).ToShortTimeString()}";
+            lblOnline.Text = StringLayer.GetLblOnlineString(reg);
             lblUrenWeek.Text = Registratie.TotalDuration(Data.GetRegsForWeek(DateTime.Now)) + "/" + Contract.Uren;
             lblUrenTotaal.Text = Registratie.TotalDuration(Data.All());
             lblUrenDiff.Text = Registratie.Difference(Data.All());
             lblUrenDiff.ForeColor = lblUrenDiff.Text.StartsWith("-") ? Color.Red : Color.Green;
-            chrtUren.Series[0] = Data.GetSeries(Data.WorkedHours);
+            chrtUren.Series[0] = GraphLayer.GetSeries(GraphLayer.WorkedHours);
         }
 
         private void SetBtnGenerate()
@@ -123,8 +121,7 @@ namespace UrenRegistratie.Forms
                 var pointYPixel = result.ChartArea.AxisY.ValueToPixelPosition(prop.YValues[0]);
 
                 if (Math.Abs(pos.X - pointXPixel) < 2 && Math.Abs(pos.Y - pointYPixel) < 2)
-                    _tooltip.Show($"{DateTime.FromOADate(prop.XValue).ToShortDateString()}; {prop.YValues[0]} uur"
-                        , chrtUren, pos.X, pos.Y - 15);
+                    _tooltip.Show(StringLayer.GetToolTip(prop), chrtUren, pos.X, pos.Y - 15);
             }
         }
     }
