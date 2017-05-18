@@ -23,7 +23,8 @@ namespace UrenRegistratie.Layers
             var dt = DateTime.FromOADate(prop.XValue);
             var dtBegin = dt.SetDayOfWeek(0);
             var dtEnd = dt.SetDayOfWeek(6);
-            return $"{dtBegin.Day} tot {dtEnd.ToString("d MMMM yyyy")}; {prop.YValues[0]} uur";
+            var dtBeginStr = dtBegin.Month == dtEnd.Month ? dtBegin.Day.ToString() : dtBegin.ToString("d MMMM");
+            return $"{dtBeginStr} tot {dtEnd.ToString("d MMMM yyyy")}; {prop.YValues[0]} uur";
         }
     }
 }
